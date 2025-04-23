@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build",
-    "deploy": "npm run export && touch out/.nojekyll && gh-pages -d out -t true"
+    "predeploy": "npm run build && powershell -Command \"if (!(Test-Path 'out/.nojekyll')) { New-Item -Path out/.nojekyll -ItemType File }\"",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
