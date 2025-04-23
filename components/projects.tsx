@@ -3,9 +3,17 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Button } from "@/components/ui/button"
-import { Github, Calendar, Tag } from "lucide-react"
+import { Github, Calendar, Tag, Info } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog"
 
 export default function Projects() {
   const [ref, inView] = useInView({
@@ -14,169 +22,188 @@ export default function Projects() {
   })
 
   const [activeCategory, setActiveCategory] = useState("All")
+  const [selectedProject, setSelectedProject] = useState(null)
 
-  const projectCategories = ["All", "Web Development", "AI & Machine Learning", "Data Engineering", "Educational"]
+  const projectCategories = [
+    "All",
+    "Full Stack Development",
+    "AI & Machine Learning",
+    "iOS Development",
+    "Software Engineering",
+    "IoT & Data Engineering",
+  ]
 
   const projects = [
+    // Projects organized in descending order by date (newest first)
+    {
+      title: "Web Crawler Search Engine",
+      description: "Flask-based search engine with custom web crawler",
+      image: "/WebCrawlerImg.png",
+      period: "Jan 2024 - Apr 2024",
+      technologies: ["Flask", "Python", "Elasticsearch", "BM25", "Multithreading", "PageRank"],
+      detailedPoints: [
+        "Engineered a search engine that returns the top 20 most relevant results per query using Elasticsearch's powerful indexing capabilities.",
+        "Designed a custom web crawler implementing BFS traversal with PageRank algorithm and priority queue to efficiently index 30,000 documents.",
+        "Optimized system performance through multithreading techniques, dramatically reducing runtime from 2 hours to just 8 minutes.",
+      ],
+      github: "https://github.com/SaumyaGupta907/hw5-SaumyaGupta907",
+      category: "AI & Machine Learning",
+    },
     {
       title: "MovieZest",
-      description: "A movie recommendation web application with personalized suggestions",
+      description: "Movie discovery platform with search features",
       image: "/placeholder.svg?height=400&width=600",
       period: "Feb 2024 - Apr 2024",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "REST API", "JWT Authentication"],
-      points: [
-        "Built a responsive movie recommendation platform with React and Material UI, featuring user authentication and personalized watchlists",
-        "Implemented a recommendation algorithm based on user preferences and viewing history",
+      technologies: ["React", "JavaScript", "REST API"],
+      detailedPoints: [
+        "Developed an IMDB-like web application enabling users to search for movies by title, genre, and other criteria.",
+        "Implemented detailed movie pages displaying summaries, cast information, ratings, and related recommendations.",
+        "Created an intuitive user interface with responsive design for seamless browsing across desktop and mobile devices.",
       ],
       github: "https://github.com/SaumyaGupta907/MovieZest",
-      category: "Web Development",
+      category: "Full Stack Development",
+    },
+    {
+      title: "Kanbaz",
+      description: "Canvas-like Learning Management System",
+      image: "/kanbaz.png",
+      period: "Jan 2024 - Apr 2024",
+      technologies: ["React", "Redux", "TypeScript", "Node.js", "MongoDB", "REST API"],
+      detailedPoints: [
+        "Built a comprehensive learning management system supporting multiple user profiles with role-based views and permissions.",
+        "Implemented course management features for faculty and organized module access for students, creating a streamlined educational experience.",
+        "Developed authentication, assignment submission, and content management systems that received positive feedback during academic evaluations.",
+      ],
+      github: "https://github.com/SaumyaGupta907",
+      category: "Full Stack Development",
+    },
+    {
+      title: "SheBalance",
+      description: "AI-driven platform for women returning from maternity leave",
+      image: "/SheBalance.jpg",
+      period: "Nov 2023",
+      technologies: ["React.js", "Node.js", "ApyHub", "HuggingFace", "NewsAPI"],
+      detailedPoints: [
+        "Created a personalized platform that helps returning mothers stay informed, skilled, and supported during their maternity phase.",
+        "Developed key features including AI-generated weekly progress summaries, curated learning modules, and mood-based content recommendations.",
+        "Integrated tech news updates and interactive project timelines to help users maintain workplace awareness during their leave.",
+      ],
+      github: "https://github.com/SaumyaGupta907/SheHack-HackathonNEU",
+      category: "Full Stack Development",
+    },
+    {
+      title: "HuskyStudy App",
+      description: "Collaborative study group application",
+      image: "/huskyapp.jpeg",
+      period: "Oct 2023 - Dec 2023",
+      technologies: ["SwiftUI", "Firebase", "Cloud Firestore"],
+      detailedPoints: [
+        "Designed a collaborative chat application allowing users to create and join virtual study groups for shared learning sessions.",
+        "Implemented advanced features including group messaging, image sharing, polling functionality, and user profile customization.",
+        "Integrated Firebase for authentication, real-time database operations, and push notifications to enhance user engagement.",
+      ],
+      github: "https://github.com/SaumyaGupta907/HuskyStudyApp",
+      category: "iOS Development",
+    },
+    {
+      title: "Image Processor",
+      description: "Java-based image manipulation application",
+      image: "/ImageProcessor.png",
+      period: "Sep 2023 - Dec 2023",
+      technologies: ["Java", "Swing", "MVC", "Command Pattern"],
+      detailedPoints: [
+        "Developed a comprehensive image processing application with both text-based and GUI interfaces using Java Swing and MVC architecture.",
+        "Implemented over 10 unique image operations including RGB visualization, image flipping, and brightness adjustment.",
+        "Utilized the Command Design pattern to achieve real-time output with processing times under 2 seconds, demonstrating efficient algorithm implementation.",
+      ],
+      github: "https://github.com/SaumyaGupta907",
+      category: "Software Engineering",
     },
     {
       title: "Face Mask & Social Distance Detection",
-      description: "AI-powered system for COVID-19 safety compliance monitoring",
+      description: "AI system for COVID-19 safety monitoring",
       image: "/placeholder.svg?height=400&width=600",
       period: "Jan 2023 - Mar 2023",
       technologies: ["Python", "TensorFlow", "OpenCV", "Computer Vision", "Deep Learning"],
-      points: [
-        "Developed a real-time detection system using computer vision to monitor face mask usage and social distancing",
-        "Implemented custom deep learning models with TensorFlow for accurate detection in various lighting conditions",
+      detailedPoints: [
+        "Developed a research-based system using deep learning models like MobileNet, YOLO, and ResNet-50 to detect face mask usage and social distancing violations in real-time.",
+        "Built with Python 3.x, the system is specifically designed for monitoring crowded spaces such as airports and hospitals during the pandemic.",
+        "Research work published in Springer (https://link.springer.com/chapter/10.1007/978-981-19-9819-5_34), demonstrating the academic significance and practical applications of the project.",
       ],
       github: "https://github.com/SaumyaGupta907/FaceMaskandSocialDistanceDetectionusingDLLmodels",
       category: "AI & Machine Learning",
     },
     {
-      title: "HuskyStudy App",
-      description: "Study companion app for Northeastern University students",
-      image: "/placeholder.svg?height=400&width=600",
-      period: "Oct 2023 - Dec 2023",
-      technologies: ["React Native", "Firebase", "Redux", "Node.js", "Express"],
-      points: [
-        "Created a mobile application to help students organize study sessions, share resources, and track academic progress",
-        "Implemented real-time collaboration features and calendar integration for scheduling",
-      ],
-      github: "https://github.com/SaumyaGupta907/HuskyStudyApp",
-      category: "Educational",
-    },
-    {
-      title: "Flask-Based Search Engine",
-      description: "Custom search engine with web crawler and Elasticsearch integration",
-      image: "/placeholder.svg?height=400&width=600",
-      period: "Jan 2024 - Apr 2024",
-      technologies: ["Flask", "Python", "Elasticsearch", "BM25", "Multithreading", "PageRank"],
-      points: [
-        "Developed a Flask-based search engine that integrates Elasticsearch and BM25 ranking to return the top 20 most relevant documents per query",
-        "Designed and implemented a custom web crawler using a breadth-first search approach with PageRank algorithm and priority queue to index 30,000 documents",
-        "Optimized crawler performance through multithreading, cutting runtime from 2 hours to 8 minutes",
-      ],
-      github: "https://github.com/SaumyaGupta907/hw5-SaumyaGupta907",
-      category: "Data Engineering",
-    },
-    {
-      title: "SheHack Hackathon Project",
-      description: "Women-focused tech solution developed during Northeastern University hackathon",
-      image: "/placeholder.svg?height=400&width=600",
-      period: "Nov 2023",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "Google Maps API"],
-      points: [
-        "Developed an innovative solution to address women's safety concerns in urban environments",
-        "Integrated real-time location tracking and emergency alert system with community support features",
-      ],
-      github: "https://github.com/SaumyaGupta907/SheHack-HackathonNEU",
-      category: "Web Development",
-    },
-    {
-      title: "Kanbaz",
-      description: "A Canvas-like Learning Management System built with MERN stack",
-      image: "/placeholder.svg?height=400&width=600",
-      period: "Jul 2024 - Aug 2024",
-      technologies: ["React", "Redux", "TypeScript", "Node.js", "MongoDB", "REST API"],
-      points: [
-        "Built a Canvas-like LMS with React, Redux, and TypeScript, supporting multiple user profiles with role-based views",
-        "Engineered a Node.js backend with MongoDB and RESTful APIs for authentication and content management",
-      ],
-      github: "https://github.com/SaumyaGupta907",
-      category: "Educational",
-    },
-    {
-      title: "Image Processor",
-      description: "Java-based image processing application with GUI interface",
-      image: "/placeholder.svg?height=400&width=600",
-      period: "Sep 2023 - Dec 2023",
-      technologies: ["Java", "Swing", "MVC", "Command Pattern"],
-      points: [
-        "Programmed a Java-based image processing application using Java Swing and MVC architecture",
-        "Implemented core functionalities such as RGB visualization, image flipping, and brightening using the Command Design pattern",
-      ],
-      github: "https://github.com/SaumyaGupta907",
-      category: "AI & Machine Learning",
-    },
-    {
       title: "Hydrosense",
-      description: "IoT-based water quality monitoring system for schools",
+      description: "IoT-based water quality monitoring system",
       image: "/placeholder.svg?height=400&width=600",
       period: "Aug 2022 - Sep 2022",
       technologies: ["Python", "Django", "JavaScript", "Firebase", "IoT"],
-      points: [
-        "Developed a dashboard using Python-Django and JavaScript, integrating IoT for water quality monitoring across 500 schools",
-        "Deployed a cloud-based multi-level monitoring system with Firebase for efficient data storage and analysis",
+      detailedPoints: [
+        "Developed an interactive dashboard using Django and JavaScript that monitors water quality across 500 schools in real-time.",
+        "Designed a cloud-based multi-level monitoring system with Firebase for efficient data storage and comprehensive analysis.",
+        "Won the Smart India Hackathon, competing against 40,000+ teams, by creating an innovative solution to a critical public health challenge.",
       ],
       github: "https://github.com/SaumyaGupta907",
-      category: "Data Engineering",
+      category: "IoT & Data Engineering",
     },
   ]
 
   const filteredProjects =
     activeCategory === "All" ? projects : projects.filter((project) => project.category === activeCategory)
 
-  const ProjectCard = ({ project, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.5, delay: 0.15 * index }}
-      className="bg-white rounded-xl shadow-md overflow-hidden project-card"
-    >
-      <div className="relative h-48 w-full">
-        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium flex items-center">
-          <Tag className="h-3 w-3 mr-1 text-primary" />
-          {project.category}
+  const ProjectCard = ({ project, index }) => {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.5, delay: 0.15 * index }}
+        className="bg-white rounded-xl shadow-md overflow-hidden project-card flex flex-col h-full"
+      >
+        <div className="relative h-48 w-full">
+          <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium flex items-center">
+            <Tag className="h-3 w-3 mr-1 text-primary" />
+            {project.category}
+          </div>
         </div>
-      </div>
-      <div className="p-6">
-        <div className="flex items-center text-sm text-gray-500 mb-2">
-          <Calendar className="h-4 w-4 mr-1" />
-          <span>{project.period}</span>
-        </div>
-        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-gray-600 mb-4">{project.description}</p>
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="flex items-center text-sm text-gray-500 mb-2">
+            <Calendar className="h-4 w-4 mr-1" />
+            <span>{project.period}</span>
+          </div>
+          <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+          <p className="text-gray-600 mb-4">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, i) => (
-            <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
-              {tech}
-            </span>
-          ))}
-        </div>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech, i) => (
+              <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
+                {tech}
+              </span>
+            ))}
+          </div>
 
-        <ul className="space-y-2 mb-6">
-          {project.points.map((point, i) => (
-            <li key={i} className="text-sm text-gray-600">
-              • {point}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex gap-3">
-          <a href={project.github} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
-              <Github className="h-4 w-4" />
-              Code
+          <div className="mt-auto pt-4 flex gap-3">
+            <a href={project.github} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="sm" className="flex items-center gap-2">
+                <Github className="h-4 w-4" />
+                Code
+              </Button>
+            </a>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2"
+              onClick={() => setSelectedProject(project)}
+            >
+              <Info className="h-4 w-4" />
+              Details
             </Button>
-          </a>
+          </div>
         </div>
-      </div>
-    </motion.div>
-  )
+      </motion.div>
+    )
+  }
 
   return (
     <section id="projects" className="py-20 bg-gray-50">
@@ -215,6 +242,50 @@ export default function Projects() {
           ))}
         </div>
       </div>
+
+      {/* Project Details Dialog */}
+      <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && setSelectedProject(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-primary font-medium">{selectedProject?.period}</DialogDescription>
+          </DialogHeader>
+
+          <div className="mt-4">
+            <h4 className="font-medium mb-2">Technologies</h4>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {selectedProject?.technologies.map((tech, i) => (
+                <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <h4 className="font-medium mb-2">Key Achievements</h4>
+            <ul className="space-y-2 mb-4">
+              {selectedProject?.detailedPoints.map((point, i) => (
+                <li key={i} className="text-sm text-gray-600">
+                  • {point}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex justify-between mt-6">
+              <a href={selectedProject?.github} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  <Github className="h-4 w-4" />
+                  View Code
+                </Button>
+              </a>
+              <DialogClose asChild>
+                <Button variant="outline" size="sm">
+                  Close
+                </Button>
+              </DialogClose>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

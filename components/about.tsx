@@ -29,9 +29,10 @@ export default function About() {
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative h-[400px] rounded-lg overflow-hidden shadow-xl"
+            className="relative mx-auto w-full max-w-sm rounded-lg overflow-hidden shadow-xl"
+            style={{ aspectRatio: "3/4" }}
           >
-            <Image src="/placeholder.svg?height=800&width=600" alt="Saumya Gupta" fill className="object-cover" />
+            <Image src="/photo_alt.png" alt="Saumya Gupta" fill className="object-cover" priority />
           </motion.div>
 
           <motion.div

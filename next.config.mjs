@@ -28,7 +28,7 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   // Add these settings for GitHub Pages deployment
-  output: 'export',
+  //output: 'export',
   // Replace 'your-repo-name' with your actual GitHub repository name
   // If your repo is username.github.io, you can remove this line
   basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',

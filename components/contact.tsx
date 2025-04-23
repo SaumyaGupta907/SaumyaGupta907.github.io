@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [ref, inView] = useInView({
@@ -20,6 +21,10 @@ export default function Contact() {
     subject: "",
     message: "",
   })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({ success: false, message: "" })
+  const formRef = useRef()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -28,15 +33,38 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Form submission logic would go here
-    console.log("Form submitted:", formData)
-    alert("Thank you for your message! I will get back to you soon.")
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
+    setIsSubmitting(true)
+    setSubmitStatus({ success: false, message: "" })
+    
+    // Replace these with your actual Email.js credentials
+    const serviceId = 'service_gwji69k'
+    const templateId = 'YOUR_TEMPLATE_ID'
+    const publicKey = 'lnuWJEW547RPBQo9M'
+    
+    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text)
+        setSubmitStatus({ 
+          success: true, 
+          message: "Thank you for your message! I will get back to you soon." 
+        })
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        })
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error)
+        setSubmitStatus({ 
+          success: false, 
+          message: "Failed to send message. Please try again later." 
+        })
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+      })
   }
 
   const contactInfo = [
@@ -46,12 +74,7 @@ export default function Contact() {
       value: "gupta.saum@northeastern.edu",
       link: "mailto:gupta.saum@northeastern.edu",
     },
-    {
-      icon: <Phone className="h-6 w-6" />,
-      title: "Phone",
-      value: "(857) 867-9496",
-      link: "tel:+18578679496",
-    },
+
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
@@ -70,8 +93,8 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold">Get In Touch</h2>
-          <div className="mt-2 h-1 w-20 bg-primary mx-auto"></div>
+          <h2 className="text-3xl font-bold gradient-text">Get In Touch</h2>
+          <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Feel free to reach out to me for job opportunities, collaborations, or just to say hello!
           </p>
@@ -108,7 +131,13 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="md:col-span-2 bg-white rounded-lg shadow-md p-6"
           >
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {submitStatus.message && (
+              <div className={`p-4 mb-4 rounded-md ${submitStatus.success ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                {submitStatus.message}
+              </div>
+            )}
+            
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
@@ -165,9 +194,25 @@ export default function Contact() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full sm:w-auto">
-                <Send className="h-4 w-4 mr-2" />
-                Send Message
+              <Button 
+                type="submit" 
+                className="w-full sm:w-auto gradient-bg"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 mr-2" />
+                    Send Message
+                  </>
+                )}
               </Button>
             </form>
           </motion.div>

@@ -33,6 +33,7 @@ export default function Experience() {
       skills: [
         "SAP BASIS",
         "SAP HANA",
+        "Sybase",
         "Oracle",
         "Linux",
         "System Administration",
