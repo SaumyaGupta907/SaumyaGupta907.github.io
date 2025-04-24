@@ -122,7 +122,7 @@ export default function Projects() {
     {
       title: "Face Mask & Social Distance Detection",
       description: "AI system for COVID-19 safety monitoring",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/facemask.jpeg",
       period: "Jan 2023 - Mar 2023",
       technologies: ["Python", "TensorFlow", "OpenCV", "Computer Vision", "Deep Learning"],
       detailedPoints: [
