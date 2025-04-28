@@ -14,12 +14,12 @@ export default function Skills() {
     {
       category: "Programming Languages",
       icon: <Code className="h-6 w-6" />,
-      items: ["Python", "Java", "TypeScript", "JavaScript", "C++", "SQL", "HTML", "CSS"],
+      items: ["Python", "Java", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
     },
     {
       category: "Web Technologies",
       icon: <Globe className="h-6 w-6" />,
-      items: ["React.js", "Next.js", "Node.js", "Express.js", "Flask", "Django", "REST APIs", "MVC", "Redux"],
+      items: ["React.js", "Next.js", "Node.js", "Express.js", "Django", "REST APIs", "MVC", "Redux"],
     },
     {
       category: "Database & Cloud",
@@ -37,7 +37,7 @@ export default function Skills() {
     {
       category: "AI & Machine Learning",
       icon: <Brain className="h-6 w-6" />,
-      items: ["TensorFlow", "Computer Vision", "OpenCV", "Deep Learning", "BM25 Ranking", "PageRank"],
+      items: ["TensorFlow", "OpenCV", "Web Crawling", "Information Retrieval"],
     },
     {
       category: "DevOps & Tools",
@@ -49,8 +49,6 @@ export default function Skills() {
       icon: <Cpu className="h-6 w-6" />,
       items: [
         "Alexa Skills Kit",
-        "Web Crawling",
-        "IoT",
         "System Architecture",
         "UI/UX Design",
         "Data Structures & Algorithms",

@@ -52,7 +52,7 @@ export default function Projects() {
     {
       title: "MovieZest",
       description: "Movie discovery platform with search features",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/moviezest.png",
       period: "Feb 2024 - Apr 2024",
       technologies: ["React", "JavaScript", "REST API"],
       detailedPoints: [
