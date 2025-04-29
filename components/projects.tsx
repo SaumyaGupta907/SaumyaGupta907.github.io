@@ -94,7 +94,7 @@ export default function Projects() {
     {
       title: "HuskyStudy App",
       description: "Collaborative study group application",
-      image: "/huskyapp.jpeg",
+      image: "/huskyapp.png",
       period: "Oct 2023 - Dec 2023",
       technologies: ["SwiftUI", "Firebase", "Cloud Firestore"],
       detailedPoints: [
