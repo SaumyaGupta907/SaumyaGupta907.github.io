@@ -27,15 +27,11 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  // Add these settings for GitHub Pages deployment
+  // GitHub Pages deployment settings for user/org site
   output: 'export',
-  // Replace 'your-repo-name' with your actual GitHub repository name
-  // If your repo is username.github.io, you can remove this line
-  // basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',
   trailingSlash: true,
 
-  // 🚀 ADD THIS → forces Next.js to build in /build instead of /.next
-  distDir: 'build',
+  // No headers() — not used in static export!
 }
 
 if (userConfig) {
