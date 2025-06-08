@@ -9,7 +9,10 @@ export const metadata = {
   title: "Saumya Gupta | Software Development Engineer",
   description:
     "Portfolio website of Saumya Gupta, a Software Development Engineer with expertise in full-stack development.",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  other: {
+    'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src *; script-src 'self' 'unsafe-inline';"
+  }
 }
 
 export default function RootLayout({
@@ -27,6 +30,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-import './globals.css'
