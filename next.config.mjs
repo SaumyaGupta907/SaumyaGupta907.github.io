@@ -33,6 +33,9 @@ const nextConfig = {
   // If your repo is username.github.io, you can remove this line
   // basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',
   trailingSlash: true,
+
+  // 🚀 ADD THIS → forces Next.js to build in /build instead of /.next
+  distDir: 'build',
 }
 
 if (userConfig) {

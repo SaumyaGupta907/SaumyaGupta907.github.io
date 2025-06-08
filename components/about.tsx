@@ -48,9 +48,9 @@ export default function About() {
             </p>
             <p className="text-gray-600 mb-6">
               My professional journey includes working at Accenture as an Associate Software Engineer and internships at
-              Crewasis.ai and DecibelApps, where I developed skills in system architecture, database management, and
-              user experience design. I'm also passionate about AI and machine learning, having worked on computer
-              vision and data engineering projects.
+              Experian, Crewasis.ai, and DecibelApps, where I developed skills in system architecture, database
+              management, and user experience design. I'm also passionate about AI and machine learning, having worked
+              on computer vision and data engineering projects.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -61,13 +61,9 @@ export default function About() {
                 <p className="font-medium">Email:</p>
                 <p className="text-gray-600">gupta.saum@northeastern.edu</p>
               </div>
-              <div>
+              <div className="grid-cols-2 col-span-2">
                 <p className="font-medium">Location:</p>
                 <p className="text-gray-600">Boston, MA</p>
-              </div>
-              <div>
-                <p className="font-medium">Phone:</p>
-                <p className="text-gray-600">(857) 867-9496</p>
               </div>
             </div>
           </motion.div>

@@ -13,6 +13,22 @@ export default function Experience() {
   const experiences = [
     {
       title: "Software Engineering Intern",
+      company: "Experian",
+      location: "Boston, MA",
+      period: "May 2025 – Present",
+      skills: [
+        "Java",
+        "Spring Boot",
+        "MuleSoft Anypoint Studio",
+        "Insomnia",
+        "RESTful API Development",
+        "Maven",
+        "AWS DynamoDB",
+        "GitHub Actions",
+      ],
+    },
+    {
+      title: "Software Engineering Intern",
       company: "Crewasis.ai",
       location: "New York, NY",
       period: "May 2024 – Aug 2024",
@@ -22,7 +38,7 @@ export default function Experience() {
       title: "Object-Oriented Design & Java Teaching Assistant",
       company: "Northeastern University",
       location: "Boston, MA",
-      period: "May 2024 – Present",
+      period: "May 2024 – May 2025",
       skills: ["Java", "Object-Oriented Design", "Design Patterns", "JUnit", "PITest", "Mentoring"],
     },
     {
@@ -51,7 +67,7 @@ export default function Experience() {
     },
   ]
 
-  const ExperienceCard = ({ experience, index }) => (
+  const ExperienceCard = ({ experience, index }: { experience: { title: string; company: string; location: string; period: string; skills: string[] }; index: number }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

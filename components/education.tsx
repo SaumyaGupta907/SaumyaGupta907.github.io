@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { GraduationCap, Calendar, MapPin } from "lucide-react"
+import { GraduationCap, Calendar, MapPin, Award } from "lucide-react"
 
 export default function Education() {
   const [ref, inView] = useInView({
@@ -16,16 +16,38 @@ export default function Education() {
       institution: "Northeastern University",
       location: "Boston, USA",
       period: "Sep 2023 - May 2025",
+      gpa: "3.92/4.0",
       description:
-        "Focusing on advanced algorithms, distributed systems, and software engineering principles. Relevant coursework includes Object-Oriented Design, Web Development, Database Management, and Machine Learning.",
+        "Pursuing advanced studies in computer science with focus on algorithms, distributed systems, and software engineering. Developing expertise in modern software development practices and emerging technologies.",
+      courses: [
+        "Object-Oriented Design",
+        "Web Development",
+        "Database Management",
+        "Machine Learning",
+        "Algorithms",
+        "Distributed Systems",
+        "Software Engineering",
+        "Computer Networks",
+      ],
     },
     {
       degree: "B.Tech - Computer Science",
       institution: "Jawaharlal Nehru Technological University",
       location: "Hyderabad, India",
       period: "Aug 2018 - Jul 2022",
+      gpa: "9.21/10.0",
       description:
-        "Graduated with a strong foundation in computer science fundamentals, data structures, algorithms, and software development methodologies.",
+        "Completed comprehensive undergraduate program in computer science with strong academic performance. Built solid foundation in programming, algorithms, and software development methodologies.",
+      courses: [
+        "Data Structures & Algorithms",
+        "Operating Systems",
+        "Computer Architecture",
+        "Database Systems",
+        "Software Engineering",
+        "Computer Networks",
+        "Web Technologies",
+        "Programming Fundamentals",
+      ],
     },
   ]
 
@@ -40,8 +62,15 @@ export default function Education() {
         <div className="p-3 bg-primary/10 rounded-full text-primary">
           <GraduationCap className="h-6 w-6" />
         </div>
-        <div>
-          <h3 className="text-xl font-bold">{edu.degree}</h3>
+        <div className="flex-1">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="text-xl font-bold">{edu.degree}</h3>
+            <div className="flex items-center bg-green-50 px-3 py-1 rounded-full">
+              <Award className="h-4 w-4 text-green-600 mr-1" />
+              <span className="text-green-700 font-medium text-sm">GPA: {edu.gpa}</span>
+            </div>
+          </div>
+
           <div className="text-primary font-medium mt-1">{edu.institution}</div>
 
           <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-500">
@@ -56,6 +85,17 @@ export default function Education() {
           </div>
 
           <p className="mt-3 text-gray-600">{edu.description}</p>
+
+          <div className="mt-4">
+            <h4 className="font-medium text-sm mb-2">Key Coursework:</h4>
+            <div className="flex flex-wrap gap-2">
+              {edu.courses.map((course, i) => (
+                <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
+                  {course}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>
