@@ -301,7 +301,7 @@ export default function Contact() {
               <div className="space-y-2">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test key - replace with your real key
+                  sitekey="6LeYYFkrAAAAAM_TfvhdExZH_gjrgazSzXHhlJM2" 
                   onChange={handleRecaptchaChange}
                   theme="light"
                 />
