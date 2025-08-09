@@ -66,7 +66,7 @@ export default function Navbar() {
               <span className="sr-only">GitHub</span>
             </a>
             <a
-              href="https://linkedin.com/in/saumyagupta907"
+              href="https://www.linkedin.com/in/saumya-gupta346/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
@@ -112,7 +112,7 @@ export default function Navbar() {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/in/saumyagupta907"
+                href="https://www.linkedin.com/in/saumya-gupta346/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"

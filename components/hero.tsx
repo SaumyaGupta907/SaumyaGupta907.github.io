@@ -55,7 +55,7 @@ export default function Hero() {
                 GitHub
               </Button>
             </a>
-            <a href="https://linkedin.com/in/saumyagupta907" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/saumya-gupta346/" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="rounded-full">
                 <Linkedin className="mr-2 h-5 w-5" />
                 LinkedIn

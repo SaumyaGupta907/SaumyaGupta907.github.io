@@ -63,7 +63,7 @@ export default function About() {
               </div>
               <div className="grid-cols-2 col-span-2">
                 <p className="font-medium">Location:</p>
-                <p className="text-gray-600">Boston, MA</p>
+                <p className="text-gray-600">Jersey City, NJ</p>
               </div>
             </div>
           </motion.div>

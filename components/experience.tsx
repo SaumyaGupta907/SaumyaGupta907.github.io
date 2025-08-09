@@ -15,7 +15,7 @@ export default function Experience() {
       title: "Software Engineering Intern",
       company: "Experian",
       location: "Boston, MA",
-      period: "May 2025 – Present",
+      period: "May 2025 – Aug 2025",
       skills: [
         "Java",
         "Spring Boot",
@@ -23,8 +23,11 @@ export default function Experience() {
         "Insomnia",
         "RESTful API Development",
         "Maven",
+        "Gradle",
         "AWS DynamoDB",
         "GitHub Actions",
+        "Harness.io",
+        "Veracode",
       ],
     },
     {

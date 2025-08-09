@@ -20,7 +20,7 @@ export default function Footer() {
               <Github className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/saumyagupta907"
+              href="https://www.linkedin.com/in/saumya-gupta346/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent transition-colors"
