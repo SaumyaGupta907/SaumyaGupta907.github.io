@@ -56,7 +56,7 @@ export default function Education() {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700"
+      className="bg-zinc-900 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700"
     >
       <div className="flex items-start gap-4">
         <div className="p-3 bg-primary/10 rounded-full text-primary">
