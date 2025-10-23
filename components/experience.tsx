@@ -70,25 +70,31 @@ export default function Experience() {
     },
   ]
 
-  const ExperienceCard = ({ experience, index }: { experience: { title: string; company: string; location: string; period: string; skills: string[] }; index: number }) => (
+  const ExperienceCard = ({
+    experience,
+    index,
+  }: {
+    experience: { title: string; company: string; location: string; period: string; skills: string[] }
+    index: number
+  }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
       className="relative pl-8 pb-8 last:pb-0 experience-timeline"
     >
-      <div className="absolute left-[-8px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-white"></div>
-      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+      <div className="absolute left-[-8px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-black"></div>
+      <div className="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700">
         <div className="flex flex-wrap justify-between items-start mb-2">
-          <h3 className="text-xl font-bold">{experience.title}</h3>
-          <div className="flex items-center text-sm text-gray-500 mt-1 sm:mt-0">
+          <h3 className="text-xl font-bold text-white">{experience.title}</h3>
+          <div className="flex items-center text-sm text-gray-400 mt-1 sm:mt-0">
             <Calendar className="h-4 w-4 mr-1" />
             <span>{experience.period}</span>
           </div>
         </div>
         <div className="mb-4">
           <div className="text-primary font-medium">{experience.company}</div>
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm text-gray-400">
             <MapPin className="h-4 w-4 mr-1" />
             <span>{experience.location}</span>
           </div>
@@ -105,7 +111,7 @@ export default function Experience() {
   )
 
   return (
-    <section id="experience" className="py-20 bg-white">
+    <section id="experience" className="py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -114,9 +120,9 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold gradient-text">Work Experience</h2>
+          <h2 className="text-3xl font-bold gradient-text text-white">Work Experience</h2>
           <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
             My professional journey has equipped me with valuable experience across different roles and technologies.
           </p>
         </motion.div>

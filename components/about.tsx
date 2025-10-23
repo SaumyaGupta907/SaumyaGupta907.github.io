@@ -11,7 +11,7 @@ export default function About() {
   })
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-zinc-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -20,7 +20,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold gradient-text">About Me</h2>
+          <h2 className="text-3xl font-bold text-white gradient-text">About Me</h2>
           <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
         </motion.div>
 
@@ -41,12 +41,12 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className="text-2xl font-bold mb-4">Software Development Engineer</h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-300 mb-6">
               I am a passionate Software Development Engineer with experience in full-stack development, currently
               pursuing my Master's in Computer Science at Northeastern University. With a strong foundation in Java,
               TypeScript, Python, and web technologies, I enjoy building scalable and efficient applications.
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-300 mb-6">
               My professional journey includes working at Accenture as an Associate Software Engineer and internships at
               Experian, Crewasis.ai, and DecibelApps, where I developed skills in system architecture, database
               management, and user experience design. I'm also passionate about AI and machine learning, having worked
@@ -55,15 +55,15 @@ export default function About() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="font-medium">Name:</p>
-                <p className="text-gray-600">Saumya Gupta</p>
+                <p className="text-gray-300">Saumya Gupta</p>
               </div>
               <div>
                 <p className="font-medium">Email:</p>
-                <p className="text-gray-600">gupta.saum@northeastern.edu</p>
+                <p className="text-gray-300">gupta.saum@northeastern.edu</p>
               </div>
               <div className="grid-cols-2 col-span-2">
                 <p className="font-medium">Location:</p>
-                <p className="text-gray-600">Jersey City, NJ</p>
+                <p className="text-gray-300">Jersey City, NJ</p>
               </div>
             </div>
           </motion.div>

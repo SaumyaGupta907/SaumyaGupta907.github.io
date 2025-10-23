@@ -30,6 +30,7 @@ export default function Skills() {
         "REST APIs",
         "MVC Architecture",
         "Redux",
+        "GraphQL"
       ],
     },
     {
@@ -48,9 +49,14 @@ export default function Skills() {
       category: "DevOps, CI/CD & Tools",
       icon: <Server className="h-6 w-6" />,
       items: [
-        "Docker",
         "Git",
+        "GitLab",
+        "Docker",
+        "Kubernetes",
+        "Jenkins",
         "CI/CD Pipelines",
+        "Terraform",
+        "Ansible",
         "Agile Methodology",
         "Jira",
         "IntelliJ IDEA",
@@ -87,11 +93,11 @@ export default function Skills() {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+      className="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700"
     >
       <div className="flex items-center mb-4">
         <div className="p-2 bg-primary/10 rounded-lg text-primary mr-3">{icon}</div>
-        <h3 className="text-xl font-bold">{category}</h3>
+        <h3 className="text-xl font-bold text-white">{category}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {items.map((item, i) => (
@@ -104,7 +110,7 @@ export default function Skills() {
   )
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section id="skills" className="py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -113,9 +119,9 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold gradient-text">Skills & Expertise</h2>
+          <h2 className="text-3xl font-bold  text-white gradient-text">Skills & Expertise</h2>
           <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
             My technical toolkit includes a diverse range of programming languages, frameworks, and tools that I've
             mastered throughout my academic and professional journey.
           </p>

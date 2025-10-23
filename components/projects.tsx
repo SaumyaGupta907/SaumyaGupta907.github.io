@@ -34,7 +34,6 @@ export default function Projects() {
   ]
 
   const projects = [
-    // Projects organized in descending order by date (newest first)
     {
       title: "Web Crawler Search Engine",
       description: "Flask-based search engine with custom web crawler",
@@ -74,7 +73,7 @@ export default function Projects() {
         "Implemented course management features for faculty and organized module access for students, creating a streamlined educational experience.",
         "Developed authentication, assignment submission, and content management systems that received positive feedback during academic evaluations.",
       ],
-      github: "https://github.com/SaumyaGupta907",
+      github: "https://github.com/SaumyaGupta907/kanbas-react-web-app",
       category: "Full Stack Development",
     },
     {
@@ -116,7 +115,7 @@ export default function Projects() {
         "Implemented over 10 unique image operations including RGB visualization, image flipping, and brightness adjustment.",
         "Utilized the Command Design pattern to achieve real-time output with processing times under 2 seconds, demonstrating efficient algorithm implementation.",
       ],
-      github: "https://github.com/SaumyaGupta907",
+      github: "https://github.com/SaumyaGupta907/Image-Processing-Java-App",
       category: "Software Engineering",
     },
     {
@@ -144,7 +143,7 @@ export default function Projects() {
         "Designed a cloud-based multi-level monitoring system with Firebase for efficient data storage and comprehensive analysis.",
         "Won the Smart India Hackathon, competing against 40,000+ teams, by creating an innovative solution to a critical public health challenge.",
       ],
-      github: "https://github.com/SaumyaGupta907",
+      github: "https://github.com/SaumyaGupta907/Hydrosense-SIH-KIRA",
       category: "IoT & Data Engineering",
     },
   ]
@@ -158,26 +157,29 @@ export default function Projects() {
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.5, delay: 0.15 * index }}
-        className="bg-white rounded-xl shadow-md overflow-hidden project-card flex flex-col h-full"
+        className="bg-zinc-900 border border-zinc-800 rounded-xl shadow-md overflow-hidden project-card flex flex-col h-full hover:border-zinc-700 transition-colors"
       >
         <div className="relative h-48 w-full">
           <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium flex items-center">
-            <Tag className="h-3 w-3 mr-1 text-primary" />
-            {project.category}
+          <div className="absolute top-3 right-3 bg-zinc-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium flex items-center border border-zinc-700">
+            <Tag className="h-3 w-3 mr-1 text-purple-400" />
+            <span className="text-gray-200">{project.category}</span>
           </div>
         </div>
         <div className="p-6 flex-1 flex flex-col">
-          <div className="flex items-center text-sm text-gray-500 mb-2">
+          <div className="flex items-center text-sm text-gray-400 mb-2">
             <Calendar className="h-4 w-4 mr-1" />
             <span>{project.period}</span>
           </div>
-          <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-          <p className="text-gray-600 mb-4">{project.description}</p>
+          <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
+          <p className="text-gray-300 mb-4">{project.description}</p>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {project.technologies.map((tech, i) => (
-              <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
+              <span
+                key={i}
+                className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-300 rounded-md text-xs font-medium"
+              >
                 {tech}
               </span>
             ))}
@@ -185,7 +187,11 @@ export default function Projects() {
 
           <div className="mt-auto pt-4 flex gap-3">
             <a href={project.github} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2 bg-transparent border-zinc-700 text-gray-200 hover:bg-zinc-800 hover:border-zinc-600"
+              >
                 <Github className="h-4 w-4" />
                 Code
               </Button>
@@ -193,7 +199,7 @@ export default function Projects() {
             <Button
               variant="outline"
               size="sm"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-transparent border-zinc-700 text-gray-200 hover:bg-zinc-800 hover:border-zinc-600"
               onClick={() => setSelectedProject(project)}
             >
               <Info className="h-4 w-4" />
@@ -206,7 +212,7 @@ export default function Projects() {
   }
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-zinc-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -215,9 +221,9 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold gradient-text">Projects</h2>
+          <h2 className="text-3xl font-bold text-white gradient-text">Projects</h2>
           <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
             Here are some of the projects I've worked on that showcase my technical skills and problem-solving
             abilities.
           </p>
@@ -228,7 +234,9 @@ export default function Projects() {
             <Button
               key={category}
               variant={activeCategory === category ? "default" : "outline"}
-              className={activeCategory === category ? "gradient-bg" : ""}
+              className={
+                activeCategory === category ? "gradient-bg" : "border-zinc-700 text-gray-200 hover:bg-zinc-800"
+              }
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -243,28 +251,30 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Project Details Dialog */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-lg bg-zinc-900 border-zinc-800 text-white">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold">{selectedProject?.title}</DialogTitle>
-            <DialogDescription className="text-primary font-medium">{selectedProject?.period}</DialogDescription>
+            <DialogTitle className="text-xl font-bold text-white">{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-purple-400 font-medium">{selectedProject?.period}</DialogDescription>
           </DialogHeader>
 
           <div className="mt-4">
-            <h4 className="font-medium mb-2">Technologies</h4>
+            <h4 className="font-medium mb-2 text-white">Technologies</h4>
             <div className="flex flex-wrap gap-2 mb-4">
               {selectedProject?.technologies.map((tech, i) => (
-                <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
+                <span
+                  key={i}
+                  className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-300 rounded-md text-xs font-medium"
+                >
                   {tech}
                 </span>
               ))}
             </div>
 
-            <h4 className="font-medium mb-2">Key Achievements</h4>
+            <h4 className="font-medium mb-2 text-white">Key Achievements</h4>
             <ul className="space-y-2 mb-4">
               {selectedProject?.detailedPoints.map((point, i) => (
-                <li key={i} className="text-sm text-gray-600">
+                <li key={i} className="text-sm text-gray-300">
                   • {point}
                 </li>
               ))}
@@ -272,13 +282,21 @@ export default function Projects() {
 
             <div className="flex justify-between mt-6">
               <a href={selectedProject?.github} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2 bg-transparent border-zinc-700 text-gray-200 hover:bg-zinc-800"
+                >
                   <Github className="h-4 w-4" />
                   View Code
                 </Button>
               </a>
               <DialogClose asChild>
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-zinc-700 text-gray-200 hover:bg-zinc-800 bg-transparent"
+                >
                   Close
                 </Button>
               </DialogClose>

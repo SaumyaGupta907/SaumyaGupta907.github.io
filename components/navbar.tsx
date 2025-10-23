@@ -25,6 +25,7 @@ export default function Navbar() {
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Education", href: "#education" },
+    { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
   ]
 
@@ -37,7 +38,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link href="#home" className="text-xl font-bold tracking-tight gradient-text">
+          <Link
+            href="#home"
+            className={cn(
+              "text-xl font-bold tracking-tight transition-colors",
+              scrolled ? "text-gray-900" : "text-white gradient-text",
+            )}
+          >
             Saumya Gupta
           </Link>
 
@@ -47,7 +54,10 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium hover:text-primary transition-colors"
+                className={cn(
+                  "text-sm font-medium hover:text-primary transition-colors",
+                  scrolled ? "text-gray-700" : "text-white",
+                )}
               >
                 {link.name}
               </Link>
@@ -60,7 +70,7 @@ export default function Navbar() {
               href="https://github.com/SaumyaGupta907"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
+              className={cn("hover:text-primary transition-colors", scrolled ? "text-gray-700" : "text-white")}
             >
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
@@ -69,19 +79,20 @@ export default function Navbar() {
               href="https://www.linkedin.com/in/saumya-gupta346/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
+              className={cn("hover:text-primary transition-colors", scrolled ? "text-gray-700" : "text-white")}
             >
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </a>
-            <Button variant="outline" size="sm" className="ml-4 flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Resume
-            </Button>
+ 
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          <button
+            className={cn("md:hidden", scrolled ? "text-gray-700" : "text-white")}
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
@@ -95,7 +106,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-2 text-base font-medium hover:text-primary"
+                className="block px-3 py-2 text-base font-medium hover:text-primary text-gray-700"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -106,7 +117,7 @@ export default function Navbar() {
                 href="https://github.com/SaumyaGupta907"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors text-gray-700"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
@@ -115,15 +126,12 @@ export default function Navbar() {
                 href="https://www.linkedin.com/in/saumya-gupta346/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors text-gray-700"
               >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </a>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                Resume
-              </Button>
+              
             </div>
           </div>
         </div>

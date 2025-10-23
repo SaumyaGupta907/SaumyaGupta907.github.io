@@ -154,13 +154,13 @@ export default function Contact() {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      value: "Boston, MA",
+      value: "Jersey City, NJ",
       link: null,
     },
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-zinc-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -171,7 +171,7 @@ export default function Contact() {
         >
           <h2 className="text-3xl font-bold gradient-text">Get In Touch</h2>
           <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
             Feel free to reach out to me for job opportunities, collaborations, or just to say hello!
           </p>
         </motion.div>
@@ -188,13 +188,13 @@ export default function Contact() {
               >
                 <div className="p-3 bg-primary/10 rounded-full text-primary">{info.icon}</div>
                 <div>
-                  <h3 className="font-medium">{info.title}</h3>
+                  <h3 className="font-medium text-white">{info.title}</h3>
                   {info.link ? (
-                    <a href={info.link} className="text-gray-600 hover:text-primary transition-colors">
+                    <a href={info.link} className="text-gray-300 hover:text-primary transition-colors">
                       {info.value}
                     </a>
                   ) : (
-                    <p className="text-gray-600">{info.value}</p>
+                    <p className="text-gray-300">{info.value}</p>
                   )}
                 </div>
               </motion.div>
@@ -221,7 +221,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="md:col-span-2 bg-white rounded-lg shadow-md p-6"
+            className="md:col-span-2 bg-zinc-900 rounded-lg shadow-md p-6 border border-zinc-700"
           >
             {submitStatus.message && (
               <div
@@ -247,6 +247,7 @@ export default function Contact() {
                     placeholder="John Doe"
                     required
                     minLength={2}
+                    className="bg-zinc-700 border-zinc-600 text-white placeholder:text-gray-400"
                   />
                 </div>
                 <div className="space-y-2">
@@ -261,6 +262,7 @@ export default function Contact() {
                     onChange={handleChange}
                     placeholder="john@example.com"
                     required
+                    className="bg-zinc-700 border-zinc-600 text-white placeholder:text-gray-400"
                   />
                 </div>
               </div>
@@ -276,6 +278,7 @@ export default function Contact() {
                   placeholder="How can I help you?"
                   required
                   minLength={5}
+                  className="bg-zinc-700 border-zinc-600 text-white placeholder:text-gray-400"
                 />
               </div>
               <div className="space-y-2">
@@ -291,6 +294,7 @@ export default function Contact() {
                   rows={5}
                   required
                   minLength={10}
+                  className="bg-zinc-700 border-zinc-600 text-white placeholder:text-gray-400"
                 />
                 <p className="text-xs text-gray-500">
                   Minimum 10 characters. Please avoid excessive links or promotional content.
@@ -301,7 +305,7 @@ export default function Contact() {
               <div className="space-y-2">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="6LeYYFkrAAAAAM_TfvhdExZH_gjrgazSzXHhlJM2" 
+                  sitekey="6LeYYFkrAAAAAM_TfvhdExZH_gjrgazSzXHhlJM2"
                   onChange={handleRecaptchaChange}
                   theme="light"
                 />

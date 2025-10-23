@@ -56,7 +56,7 @@ export default function Education() {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+      className="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700"
     >
       <div className="flex items-start gap-4">
         <div className="p-3 bg-primary/10 rounded-full text-primary">
@@ -64,7 +64,7 @@ export default function Education() {
         </div>
         <div className="flex-1">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-bold">{edu.degree}</h3>
+            <h3 className="text-xl font-bold text-white">{edu.degree}</h3>
             <div className="flex items-center bg-green-50 px-3 py-1 rounded-full">
               <Award className="h-4 w-4 text-green-600 mr-1" />
               <span className="text-green-700 font-medium text-sm">GPA: {edu.gpa}</span>
@@ -73,7 +73,7 @@ export default function Education() {
 
           <div className="text-primary font-medium mt-1">{edu.institution}</div>
 
-          <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-500">
+          <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-400">
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
               <span>{edu.period}</span>
@@ -84,10 +84,10 @@ export default function Education() {
             </div>
           </div>
 
-          <p className="mt-3 text-gray-600">{edu.description}</p>
+          <p className="mt-3 text-gray-300">{edu.description}</p>
 
           <div className="mt-4">
-            <h4 className="font-medium text-sm mb-2">Key Coursework:</h4>
+            <h4 className="font-medium text-sm mb-2 text-white">Key Coursework:</h4>
             <div className="flex flex-wrap gap-2">
               {edu.courses.map((course, i) => (
                 <span key={i} className="px-2 py-1 skill-pill rounded-md text-xs font-medium">
@@ -102,7 +102,7 @@ export default function Education() {
   )
 
   return (
-    <section id="education" className="py-20 bg-white">
+    <section id="education" className="py-20 bg-zinc-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -111,9 +111,11 @@ export default function Education() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold">Education</h2>
-          <div className="mt-2 h-1 w-20 bg-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold gradient-text inline-block">
+            Education
+            <div className="h-1 w-32 bg-purple-600 mx-auto mt-2"></div>
+          </h2>
+          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
             My academic background has provided me with a strong foundation in computer science and software
             engineering.
           </p>
