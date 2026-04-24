@@ -10,7 +10,7 @@ const moments = [
     id: "sih",
     label: "Smart India Hackathon · 2022",
     headline: "1st place. Out of 1M+.",
-    body: "Built Hydrosense — a real-time water quality monitoring dashboard deployed across 500 schools in India. Competed against 40,000+ teams. Won.",
+    body: "Built Hydrosense, a real-time water quality monitoring dashboard deployed across 500 schools in India. Competed against 1M+ teams. Won.",
     photo: null as string | null,
     alt: "SIH 2022 winning moment",
     gradient: "linear-gradient(135deg, rgba(124,58,237,0.4) 0%, rgba(10,10,14,1) 65%)",
@@ -21,7 +21,7 @@ const moments = [
     id: "ghc",
     label: "Grace Hopper Celebration · 2025",
     headline: "Largest gathering of women in tech.",
-    body: "Rooms full of engineers from Google, Microsoft, Amazon. Left with a clearer sense of the kind of engineer — and person — I want to be.",
+    body: "Rooms full of engineers from Google, Microsoft, Amazon. Left with a clearer sense of the kind of engineer, and person, I want to be.",
     photo: null as string | null,
     alt: "Grace Hopper Celebration 2025",
     gradient: "linear-gradient(135deg, rgba(236,72,153,0.35) 0%, rgba(10,10,14,1) 65%)",
@@ -74,7 +74,7 @@ function MomentCard({ m, priority = false }: { m: typeof moments[0]; priority?: 
         height: "100%",
       }}
     >
-      {/* Photo — fixed height so all cards align */}
+      {/* Photo, fixed height so all cards align */}
       <div className="relative flex-shrink-0" style={{ height: "220px" }}>
         {m.photo ? (
           <Image src={m.photo} alt={m.alt} fill className="object-cover" priority={priority} />

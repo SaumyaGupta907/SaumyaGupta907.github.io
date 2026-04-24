@@ -7,7 +7,7 @@ export default function Currently() {
   return (
     <section
       id="contact"
-      className="py-28 text-center relative overflow-hidden"
+      className="pt-24 pb-16 text-center relative overflow-hidden"
       style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="absolute pointer-events-none" style={{
@@ -50,7 +50,7 @@ export default function Currently() {
           <p className="mb-12 flex items-center justify-center gap-1.5"
             style={{ fontSize: "13px", color: "#4a4a55" }}>
             <MapPin className="w-3 h-3" />
-            Jersey City, NJ · Open to full-time SWE roles across the US · OPT Available
+            Jersey City, NJ · Open to full-time SWE roles · OPT Available
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center">

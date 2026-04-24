@@ -12,7 +12,7 @@ const experiences = [
     period: "Aug 2025 – Present",
     type: "Full-time",
     accentColor: "#a78bfa",
-    voice: "Full ownership of the frontend — from Figma to shipped code.",
+    voice: "Full ownership of the frontend, from Figma to shipped code.",
     context: "Small team, real clients. The kind of place where there's no one else to fix it if you don't.",
     bullets: [
       "10+ reusable React/TypeScript components across a multi-vendor e-commerce platform.",
@@ -23,7 +23,7 @@ const experiences = [
   },
   {
     company: "Experian",
-    companySub: "Consumer Services",
+    companySub: null,
     location: "Boston, MA",
     period: "May – Aug 2025",
     type: "Internship",
@@ -33,13 +33,13 @@ const experiences = [
     bullets: [
       "Deployed 6 API specs in MuleSoft (RAML/OAS) for fraud detection and identity protection platforms.",
       "Upgraded 4 Spring Boot microservices from JDK 8 → 17, fixing 15+ Veracode security vulnerabilities.",
-      "CI/CD via GitHub Actions and Harness — 99.9% uptime across all monitored services.",
+      "CI/CD via GitHub Actions and Harness. 99.9% uptime across all monitored services.",
     ],
     skills: ["Java", "Spring Boot", "MuleSoft", "GitHub Actions", "Harness", "Splunk"],
   },
   {
     company: "Crewasis.ai",
-    companySub: "Techstars",
+    companySub: null,
     location: "New York, NY",
     period: "May – Aug 2024",
     type: "Internship",
@@ -47,7 +47,7 @@ const experiences = [
     voice: "Joined a Techstars startup mid-sprint and shipped three features in one summer.",
     context: "Fast-moving, under-resourced, high-trust. You figure things out or things don't get done.",
     bullets: [
-      "ETL pipeline on AWS S3 — CSV uploads to insights, 3 days → under 10 minutes.",
+      "ETL pipeline on AWS S3. CSV uploads to insights, 3 days → under 10 minutes.",
       "Django REST search portal reducing lookup time from 5 minutes to seconds across 35+ datasets.",
       "Refactored React/TypeScript data-insights dashboard used by all client-facing teams.",
     ],
@@ -55,7 +55,7 @@ const experiences = [
   },
   {
     company: "Northeastern",
-    companySub: "Teaching Assistant",
+    companySub: null,
     location: "Boston, MA",
     period: "May 2024 – May 2025",
     type: "Part-time",
@@ -63,7 +63,7 @@ const experiences = [
     voice: "Taught the course that shapes how engineers think. Took it seriously.",
     context: "300+ students across two semesters. If one of them writes better code because of a conversation we had, that matters more than most things on this page.",
     bullets: [
-      "Weekly labs and code reviews — Java, OOP, SOLID principles, design patterns.",
+      "Weekly labs and code reviews. Java, OOP, SOLID principles, design patterns.",
       "JUnit and PIT mutation testing frameworks for better test coverage and stronger engineers.",
     ],
     skills: ["Java", "OOP", "SOLID", "JUnit", "Design Patterns"],
@@ -75,8 +75,8 @@ const experiences = [
     period: "Oct 2022 – Aug 2023",
     type: "Full-time",
     accentColor: "#60a5fa",
-    voice: "My first job. Enterprise systems, 25+ servers, and the slow realization I wanted to build things, not maintain them.",
-    context: "99% uptime isn't a metric here — it's a guarantee to thousands of stores. That pressure taught me more about software than any course.",
+    voice: "My first full-time role. Enterprise systems, 25+ servers, and the realization I wanted to build products, not maintain infrastructure.",
+    context: "After internships building Alexa skills and React apps, this was my first full-time role at scale. 99% uptime isn't a metric here, it's a guarantee to thousands of stores.",
     bullets: [
       "25+ SAP ERP servers at 99% uptime during 7-Eleven's Azure cloud migration.",
       "Kafka pipelines streaming server health metrics into Elasticsearch for real-time anomaly detection.",
@@ -93,13 +93,13 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-28"
+      className="pt-24 pb-16"
       style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="container mx-auto px-6 lg:px-16">
 
         {/* Section header */}
-        <ScrollReveal className="mb-16">
+        <ScrollReveal className="mb-10">
           <p className="font-semibold mb-4 tracking-widest uppercase"
             style={{ fontSize: "11px", color: "#a78bfa" }}>
             Experience
@@ -118,10 +118,10 @@ export default function Experience() {
 
         {/* Split screen */}
         <ScrollReveal>
-          <div className="grid lg:grid-cols-5 gap-0 min-h-[480px]"
+          <div className="grid lg:grid-cols-5 gap-0"
             style={{ border: "1px solid rgba(255,255,255,0.06)", borderRadius: "20px", overflow: "hidden" }}>
 
-            {/* Left — company list */}
+            {/* Left. company list */}
             <div className="lg:col-span-2"
               style={{ borderRight: "1px solid rgba(255,255,255,0.06)", background: "#080808" }}>
               {experiences.map((e, i) => (
@@ -142,7 +142,7 @@ export default function Experience() {
                       <div className="font-semibold mb-0.5 flex items-center gap-2"
                         style={{
                           fontSize: "15px",
-                          color: active === i ? e.accentColor : "#86868b",
+                          color: active === i ? e.accentColor : "#f5f5f7",
                           transition: "color 0.2s",
                           fontFamily: "'Playfair Display', Georgia, serif",
                         }}>
@@ -153,7 +153,7 @@ export default function Experience() {
                           </span>
                         )}
                       </div>
-                      <div style={{ fontSize: "11px", color: "#4a4a55" }}>{e.period}</div>
+                      <div style={{ fontSize: "11px", color: "#6e6e73" }}>{e.period}</div>
                     </div>
                     {active === i && (
                       <div style={{
@@ -168,7 +168,7 @@ export default function Experience() {
               ))}
             </div>
 
-            {/* Right — active company detail */}
+            {/* Right. active company detail */}
             <div className="lg:col-span-3 relative" style={{ background: "#0a0a0a" }}>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -208,7 +208,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <div style={{ fontSize: "12px", color: "#4a4a55", marginBottom: "20px" }}>
+                  <div style={{ fontSize: "12px", color: "#6e6e73", marginBottom: "20px" }}>
                     {exp.location} · {exp.period}
                   </div>
 
@@ -222,16 +222,15 @@ export default function Experience() {
                   {/* Voice + context */}
                   <p className="mb-2"
                     style={{
-                      fontSize: "17px",
+                      fontSize: "18px",
                       color: "#f5f5f7",
                       fontFamily: "'Playfair Display', Georgia, serif",
-                      fontStyle: "italic",
-                      lineHeight: 1.5,
+                      lineHeight: 1.6,
                     }}>
-                    "{exp.voice}"
+                    {exp.voice}
                   </p>
                   <p className="mb-6"
-                    style={{ fontSize: "13px", color: "#6e6e73", lineHeight: "1.7" }}>
+                    style={{ fontSize: "14px", color: "#86868b", lineHeight: "1.75" }}>
                     {exp.context}
                   </p>
 
@@ -239,7 +238,7 @@ export default function Experience() {
                   <ul className="space-y-2.5 mb-6">
                     {exp.bullets.map((b, bi) => (
                       <li key={bi} className="flex gap-3"
-                        style={{ fontSize: "13.5px", color: "#6e6e73", lineHeight: "1.7" }}>
+                        style={{ fontSize: "15px", color: "#94a3b8", lineHeight: "1.75" }}>
                         <span style={{ color: exp.accentColor, flexShrink: 0, marginTop: "2px", opacity: 0.7 }}>›</span>
                         <span>{b}</span>
                       </li>
@@ -251,9 +250,9 @@ export default function Experience() {
                     {exp.skills.map(s => (
                       <span key={s} className="px-2.5 py-1 rounded-full"
                         style={{
-                          fontSize: "11px", color: "#4a4a55",
-                          background: "rgba(255,255,255,0.02)",
-                          border: "1px solid rgba(255,255,255,0.06)",
+                          fontSize: "12px", color: "#86868b",
+                          background: "rgba(255,255,255,0.05)",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}>
                         {s}
                       </span>
@@ -263,6 +262,48 @@ export default function Experience() {
               </AnimatePresence>
             </div>
 
+          </div>
+        </ScrollReveal>
+
+        {/* Certifications strip — visible without scrolling */}
+        <ScrollReveal delay={0.2} className="mt-8">
+          <div
+            className="rounded-2xl px-8 py-6"
+            style={{ border: "1px solid rgba(255,255,255,0.06)", background: "#080808" }}
+          >
+            <div className="flex flex-wrap items-center gap-3">
+              <span style={{ fontSize: "10px", color: "#4a4a55", letterSpacing: "2px", textTransform: "uppercase", marginRight: "8px", flexShrink: 0 }}>
+                Certifications
+              </span>
+              {[
+                { name: "AWS Cloud Foundations",   color: "#f59e0b", status: "certified" },
+                { name: "AWS Cloud Architecting",  color: "#f59e0b", status: "certified" },
+                { name: "AWS Developer Associate", color: "#f59e0b", status: "in progress" },
+                { name: "Oracle Database PL/SQL",  color: "#f97316", status: "certified" },
+                { name: "Cisco Python (PCAP)",     color: "#22d3ee", status: "certified" },
+                { name: "Cisco Linux Essentials",  color: "#22d3ee", status: "certified" },
+              ].map(cert => (
+                <div
+                  key={cert.name}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full"
+                  style={{
+                    background: cert.status === "in progress" ? "rgba(124,58,237,0.08)" : "rgba(255,255,255,0.03)",
+                    border: cert.status === "in progress" ? "1px solid rgba(124,58,237,0.2)" : "1px solid rgba(255,255,255,0.07)",
+                  }}
+                >
+                  <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: cert.color, flexShrink: 0, display: "inline-block",
+                    boxShadow: cert.status === "certified" ? `0 0 4px ${cert.color}60` : "none" }} />
+                  <span style={{ fontSize: "12px", color: cert.status === "in progress" ? "#86868b" : "#94a3b8" }}>
+                    {cert.name}
+                  </span>
+                  {cert.status === "in progress" && (
+                    <span style={{ fontSize: "9px", color: "#a78bfa", fontWeight: 600, letterSpacing: "0.5px" }}>
+                      IN PROGRESS
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

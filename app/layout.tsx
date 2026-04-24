@@ -1,31 +1,27 @@
 import type React from "react"
-import { Inter } from "next/font/google"
+import type { Metadata } from "next"
+import { Playfair_Display } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import ClientLayout from "../components/client-layout"
 
-const inter = Inter({ subsets: ["latin"] })
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+})
 
-export const metadata = {
-  title: "Saumya Gupta | Software Development Engineer",
+export const metadata: Metadata = {
+  title: "Saumya Gupta | Software Engineer",
   description:
-    "Portfolio website of Saumya Gupta, a Software Development Engineer with expertise in full-stack development.",
-  generator: 'v0.dev',
-  other: {
-    'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src *; script-src 'self' 'unsafe-inline';"
-  }
+    "Portfolio of Saumya Gupta — Full-Stack Software Engineer. MS CS Northeastern. Previously at Experian, Crewasis (Techstars), Accenture.",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning className={playfair.variable}>
+      <body style={{ background: "#000", margin: 0 }}>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )

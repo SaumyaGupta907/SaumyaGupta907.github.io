@@ -11,7 +11,7 @@ export default function Story() {
     offset: ["start start", "end end"],
   })
 
-  // Tighter spring — feels responsive, not laggy
+  // Tighter spring, feels responsive, not laggy
   const progress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -25,7 +25,7 @@ export default function Story() {
   // ── Progress bar fill ────────────────────────────────────────────────────────
   const barScaleX = useTransform(progress, [0.04, 0.78], [0, 1])
 
-  // ── Paragraph transitions — ZERO overlap ────────────────────────────────────
+  // ── Paragraph transitions, ZERO overlap ────────────────────────────────────
   // Each para has a strict enter window and exit window with NO crossover.
   // Gap between exit-end of para N and enter-start of para N+1 = 0.04 (blank moment)
   // This ensures only ONE paragraph is visible at any time.
@@ -35,7 +35,7 @@ export default function Story() {
   // Para 3: enter 0.88→1.00 | stays visible
   //
   // The gaps (0.46→0.50) and (0.84→0.88) are intentional blank moments
-  // where no para is shown — this prevents any overlap whatsoever.
+  // where no para is shown, this prevents any overlap whatsoever.
 
   const p1Opacity = useTransform(progress,
     [0.06, 0.16, 0.30, 0.38],
@@ -55,7 +55,7 @@ export default function Story() {
   )
   const p3Y = useTransform(progress, [0.70, 0.78], [24, 0])
 
-  // ── Step dots — which paragraph is active ───────────────────────────────────
+  // ── Step dots, which paragraph is active ───────────────────────────────────
   // dot opacity peaks when its paragraph is fully visible
   const dot1 = useTransform(progress, [0.06, 0.16, 0.30, 0.42], [0.2, 1, 1, 0.2])
   const dot2 = useTransform(progress, [0.38, 0.52, 0.60, 0.72], [0.2, 1, 1, 0.2])
@@ -65,7 +65,7 @@ export default function Story() {
   const hintOpacity = useTransform(progress, [0, 0.06, 0.18], [1, 1, 0])
 
   return (
-    // 300vh — enough dwell time without feeling endless
+    // 300vh, enough dwell time without feeling endless
     <div ref={containerRef} id="story" style={{ height: "420vh", position: "relative", marginTop: "10vh" }}>
 
       {/* Sticky viewport */}
@@ -114,12 +114,12 @@ export default function Story() {
                   color: "#f5f5f7",
                 }}>
                 Engineer.<br />
-                <span style={{ color: "#383840" }}>Researcher.</span><br />
+                <span style={{ color: "#383840" }}>Curious by nature.</span><br />
                 Community<br />
                 builder.
               </h2>
 
-              {/* Step dots — tell user where they are */}
+              {/* Step dots, tell user where they are */}
               <div className="flex items-center gap-3 mt-8">
                 {[dot1, dot2, dot3].map((dot, i) => (
                   <motion.div
@@ -153,7 +153,7 @@ export default function Story() {
               </motion.div>
             </motion.div>
 
-            {/* ── Right: paragraphs — strictly non-overlapping ─────── */}
+            {/* ── Right: paragraphs, strictly non-overlapping ─────── */}
             <div style={{ position: "relative", minHeight: "200px" }}>
 
               {/* Para 1 */}
@@ -162,17 +162,15 @@ export default function Story() {
                 className="leading-relaxed"
               >
                 <span style={{ fontSize: "17px", color: "#94a3b8", lineHeight: "1.9" }}>
-                  In 3rd grade, I got hooked on a river-crossing puzzle —
-                  three monks, three devils, one boat. I kept losing.
-                  But instead of quitting, I started wondering:{" "}
+                  In 3rd grade, I got obsessed with a river-crossing puzzle.
+                  Three monks, three devils, one boat. I kept losing, but I kept
+                  playing, because I couldn't figure out{" "}
                   <strong className="font-medium text-white">
-                    how does the computer know the rules?
+                    how the computer knew the rules.
                   </strong>{" "}
-                  By 8th grade I had my answer — a blinking cursor, an empty{" "}
+                  By 8th grade I found out: a blinking cursor, an empty{" "}
                   <span style={{ color: "#a78bfa", fontFamily: "monospace", fontSize: "15px" }}>&lt;html&gt;</span>{" "}
-                  tag, and the realization that I could make things move on a
-                  screen too. I didn't know it yet, but I was already thinking
-                  like an engineer.
+                  tag, and the slow realization that I could make things happen on a screen too.
                 </span>
               </motion.p>
 
@@ -182,20 +180,19 @@ export default function Story() {
                 className="leading-relaxed"
               >
                 <span style={{ fontSize: "17px", color: "#94a3b8", lineHeight: "1.9" }}>
-                  That curiosity compounded. A CS degree, then{" "}
+                  I did a CS degree, then joined{" "}
                   <strong className="font-medium text-white">Accenture</strong>
-                  {" "}— real systems, real stakes, 25+ enterprise servers
-                  keeping 7-Eleven running. But I wanted to{" "}
-                  <strong className="font-medium text-white">build</strong>,
-                  not maintain. So I packed up and moved to the US for my
-                  MS at{" "}
-                  <strong className="font-medium text-white">Northeastern</strong>.
-                  {" "}Interned at a{" "}
+                  {" "}out of college. Real systems, real stakes. 25+ enterprise
+                  servers keeping 7-Eleven running. It was good, but I kept
+                  wanting to{" "}
+                  <strong className="font-medium text-white">build things</strong>,
+                  not maintain them. So I moved to the US for my MS at{" "}
+                  <strong className="font-medium text-white">Northeastern</strong>,
+                  {" "}interned at a{" "}
                   <strong className="font-medium text-white">Techstars startup</strong>
-                  {" "}cutting a 3-day pipeline to 10 minutes, then{" "}
-                  <strong className="font-medium text-white">Experian</strong>
-                  {" "}shipping APIs into fraud systems used by millions.
-                  Each step a bigger bet on the same instinct.
+                  {" "}in NYC, then{" "}
+                  <strong className="font-medium text-white">Experian</strong>,
+                  {" "}shipping APIs into fraud systems used by millions of people.
                 </span>
               </motion.p>
 
@@ -205,15 +202,15 @@ export default function Story() {
                 className="leading-relaxed"
               >
                 <span style={{ fontSize: "17px", color: "#94a3b8", lineHeight: "1.9" }}>
-                  Along the way I remembered: nobody handed me a manual either.
-                  So I{" "}
+                  Along the way, I started noticing how many people didn't
+                  have anyone to show them the door. So I{" "}
                   <strong className="font-medium text-white">
                     founded a women-in-tech coding club
                   </strong>
-                  , TA'd 300+ students, and went to{" "}
+                  , TA'd 300+ students in Java and OOP, and went to{" "}
                   <strong className="font-medium text-white">Grace Hopper</strong>{" "}
-                  to find the people who needed the same nudge I once did.
-                  That 3rd-grade kid who wondered how the game worked?
+                  to meet the people who needed the same nudge I once did.
+                  That 3rd-grade kid who couldn't figure out the boat puzzle?
                   Still here.{" "}
                   <strong className="font-medium text-white">Still building.</strong>
                 </span>
