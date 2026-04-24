@@ -1,121 +1,179 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Image from "next/image"
+import ScrollReveal from "@/components/scroll-reveal"
 
+// ─── Add as many moments as you want here ─────────────────────────────────────
+// Layout auto-adjusts: 1 item = full width, 2 = two cols, 3+ = masonry-style
 const moments = [
   {
-    icon: "🏆",
-    title: "Smart India Hackathon 2022",
-    desc: "1st place · 1M+ participants · Built Hydrosense — a national water quality monitoring dashboard for schools across India.",
+    id: "sih",
+    label: "Smart India Hackathon · 2022",
+    headline: "1st place. Out of 1M+.",
+    body: "Built Hydrosense — a real-time water quality monitoring dashboard deployed across 500 schools in India. Competed against 40,000+ teams. Won.",
     photo: null as string | null,
-    alt: "SIH 2022 Win",
+    alt: "SIH 2022 winning moment",
+    gradient: "linear-gradient(135deg, rgba(124,58,237,0.4) 0%, rgba(10,10,14,1) 65%)",
+    accentColor: "#a78bfa",
+    span: 3, // out of 5 columns on desktop
   },
   {
-    icon: "👩‍💻",
-    title: "Grace Hopper Celebration 2025",
-    desc: "World's largest gathering of women in tech. Connected with engineers from Google, Microsoft, Amazon and more.",
+    id: "ghc",
+    label: "Grace Hopper Celebration · 2025",
+    headline: "Largest gathering of women in tech.",
+    body: "Rooms full of engineers from Google, Microsoft, Amazon. Left with a clearer sense of the kind of engineer — and person — I want to be.",
     photo: null as string | null,
-    alt: "GHC 2025",
+    alt: "Grace Hopper Celebration 2025",
+    gradient: "linear-gradient(135deg, rgba(236,72,153,0.35) 0%, rgba(10,10,14,1) 65%)",
+    accentColor: "#ec4899",
+    span: 2,
   },
+  // ── To add more, just copy a block like this: ───────────────────────────────
+  // {
+  //   id: "your-event",
+  //   label: "Event Name · Year",
+  //   headline: "Short punchy headline.",
+  //   body: "One or two sentences about what it meant.",
+  //   photo: "/your-photo.jpg",   ← drop image in /public and point here
+  //   alt: "Alt text for accessibility",
+  //   gradient: "linear-gradient(135deg, rgba(52,211,153,0.35) 0%, rgba(10,10,14,1) 65%)",
+  //   accentColor: "#34d399",
+  //   span: 2,
+  // },
 ]
 
-export default function Moments() {
+function PhotoPlaceholder({ gradient }: { gradient: string }) {
+  return (
+    <div className="absolute inset-0" style={{ background: gradient }}>
+      {/* Subtle dot grid */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+        <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.12)" }} />
+        <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.18)", letterSpacing: "3px", textTransform: "uppercase" }}>
+          photo coming soon
+        </span>
+        <div style={{ width: "32px", height: "1px", background: "rgba(255,255,255,0.12)" }} />
+      </div>
+    </div>
+  )
+}
 
+function MomentCard({ m, priority = false }: { m: typeof moments[0]; priority?: boolean }) {
+  return (
+    <div
+      className="rounded-2xl overflow-hidden flex flex-col"
+      style={{
+        background: "#0d0d0d",
+        border: "1px solid rgba(255,255,255,0.06)",
+        height: "100%",
+      }}
+    >
+      {/* Photo — fixed height so all cards align */}
+      <div className="relative flex-shrink-0" style={{ height: "220px" }}>
+        {m.photo ? (
+          <Image src={m.photo} alt={m.alt} fill className="object-cover" priority={priority} />
+        ) : (
+          <PhotoPlaceholder gradient={m.gradient} />
+        )}
+        {/* Bottom fade into card bg */}
+        <div
+          className="absolute bottom-0 left-0 right-0"
+          style={{ height: "60px", background: "linear-gradient(to bottom, transparent, #0d0d0d)" }}
+        />
+        {/* Label badge */}
+        <div
+          className="absolute top-4 left-4 px-3 py-1.5 rounded-full"
+          style={{
+            background: "rgba(0,0,0,0.55)",
+            backdropFilter: "blur(10px)",
+            border: `1px solid ${m.accentColor}35`,
+            fontSize: "9px",
+            color: m.accentColor,
+            letterSpacing: "1px",
+            fontWeight: 700,
+            textTransform: "uppercase",
+          }}
+        >
+          {m.label}
+        </div>
+      </div>
+
+      {/* Text */}
+      <div className="px-6 pt-1 pb-7 flex flex-col gap-2">
+        <h3
+          className="font-bold"
+          style={{
+            fontSize: "clamp(17px, 1.8vw, 21px)",
+            fontFamily: "'Playfair Display', Georgia, serif",
+            letterSpacing: "-0.4px",
+            color: "#f5f5f7",
+            lineHeight: 1.2,
+          }}
+        >
+          {m.headline}
+        </h3>
+        <p style={{ fontSize: "13px", color: "#6e6e73", lineHeight: "1.75" }}>
+          {m.body}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default function Moments() {
   return (
     <section
       id="moments"
-      className="py-24"
-      style={{
-        background: "#0a0a0a",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-      }}
+      className="py-28"
+      style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="container mx-auto px-6 lg:px-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p
-            className="font-semibold mb-5 tracking-widest uppercase"
-            style={{ fontSize: "11px", color: "#a78bfa" }}
-          >
+
+        <ScrollReveal className="mb-14">
+          <p className="font-semibold mb-4 tracking-widest uppercase"
+            style={{ fontSize: "11px", color: "#a78bfa" }}>
             Moments
           </p>
-          <h2
-            className="font-bold mb-4"
+          <h2 className="font-bold"
             style={{
-              fontSize: "clamp(36px, 4vw, 52px)",
+              fontSize: "clamp(36px, 4vw, 54px)",
               fontFamily: "'Playfair Display', Georgia, serif",
               letterSpacing: "-1.5px",
               color: "#f5f5f7",
-            }}
-          >
+              lineHeight: 1.1,
+            }}>
             Beyond the code.
           </h2>
-          <p style={{ fontSize: "18px", color: "#6e6e73", maxWidth: "540px" }}>
-            Real moments from hackathons, conferences, and communities that
-            shaped who I am as an engineer.
-          </p>
-        </motion.div>
+        </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        {/*
+          Grid: uses CSS grid with named column spans per card.
+          1 card  → full width
+          2 cards → 3/5 + 2/5 (asymmetric, equal height)
+          3+ cards → wraps naturally, each respects its span
+          All cards have identical photo height (220px) so rows always align.
+        */}
+        <div
+          className="grid gap-4"
+          style={{ gridTemplateColumns: "repeat(5, 1fr)" }}
+        >
           {moments.map((m, i) => (
-            <motion.div
-              key={m.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 * i }}
-              className="rounded-2xl overflow-hidden relative"
-              style={{
-                background: "#111",
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
+            <ScrollReveal
+              key={m.id}
+              delay={i * 0.12}
+              style={{ gridColumn: `span ${m.span}` }}
             >
-              {/* Photo or placeholder */}
-              {m.photo ? (
-                <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
-                  <Image src={m.photo} alt={m.alt} fill className="object-cover" />
-                </div>
-              ) : (
-                <div
-                  className="w-full flex items-center justify-center"
-                  style={{
-                    aspectRatio: "16/9",
-                    background: "#0d0d0d",
-                    border: "1px dashed rgba(255,255,255,0.08)",
-                    borderRadius: "0",
-                    color: "#3d3d3f",
-                    fontSize: "13px",
-                  }}
-                >
-                  📸 Add your photo here
-                </div>
-              )}
-
-              <div className="p-8">
-                <div className="text-4xl mb-4">{m.icon}</div>
-                <h3
-                  className="font-bold mb-3"
-                  style={{
-                    fontSize: "20px",
-                    fontFamily: "'Playfair Display', Georgia, serif",
-                    color: "#f5f5f7",
-                  }}
-                >
-                  {m.title}
-                </h3>
-                <p style={{ fontSize: "14px", color: "#6e6e73", lineHeight: "1.7" }}>
-                  {m.desc}
-                </p>
-              </div>
-            </motion.div>
+              <MomentCard m={m} priority={i === 0} />
+            </ScrollReveal>
           ))}
         </div>
+
       </div>
     </section>
   )

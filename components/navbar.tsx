@@ -7,10 +7,11 @@ import { motion, AnimatePresence } from "framer-motion"
 
 // 5 links max — Apple rule. Education/Certifications moved inside sections, not nav.
 const NAV_LINKS = [
-  { name: "Work",       href: "#work" },
-  { name: "Story",      href: "#story" },
+  { name: "Home",       href: "#home"       },
+  { name: "Story",      href: "#story"      },
+  { name: "Projects",   href: "#work"       },
   { name: "Experience", href: "#experience" },
-  { name: "Contact",    href: "#contact" },
+  { name: "Contact",    href: "#contact"    },
 ]
 
 export default function Navbar() {

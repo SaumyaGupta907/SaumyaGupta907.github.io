@@ -15,7 +15,7 @@ const projects = [
     badgeColor: "#f59e0b",
     category: "IoT",
     description: "National water quality monitoring dashboard. Won Smart India Hackathon 2022 out of 1M+ participants.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "",
     period: "Aug 2022 – Sep 2022",
     technologies: ["Python", "Django", "JavaScript", "Firebase", "IoT"],
     detailedPoints: [
@@ -84,7 +84,7 @@ const projects = [
     badgeColor: "#34d399",
     category: "Full Stack",
     description: "Full-stack platform with 13-table MySQL schema, stored procedures, and role-based auth.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "",
     period: "2024",
     technologies: ["Angular", "Node.js", "MySQL", "REST APIs"],
     detailedPoints: [
@@ -268,7 +268,14 @@ function BentoGrid({ items, onSelect }: { items: Project[]; onSelect: (p: Projec
               className="relative w-full"
               style={{ aspectRatio: isFeatured ? "21/9" : "16/9" }}
             >
-              <Image src={p.image} alt={p.title} fill className="object-cover" />
+              {p.image ? (
+                  <Image src={p.image} alt={p.title} fill className="object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(10,10,14,1) 70%)" }}>
+                    <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.15)", letterSpacing: "3px", textTransform: "uppercase" }}>{p.title}</span>
+                  </div>
+                )}
               {isFeatured && (
                 <div
                   className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
@@ -304,7 +311,14 @@ function UniformGrid({ items, onSelect }: { items: Project[]; onSelect: (p: Proj
           onMouseLeave={e => CardHoverHandlers(e.currentTarget as HTMLElement, false)}
         >
           <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
-            <Image src={p.image} alt={p.title} fill className="object-cover" />
+            {p.image ? (
+                  <Image src={p.image} alt={p.title} fill className="object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(10,10,14,1) 70%)" }}>
+                    <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.15)", letterSpacing: "3px", textTransform: "uppercase" }}>{p.title}</span>
+                  </div>
+                )}
           </div>
           <CardBody p={p} compact />
         </motion.div>
@@ -335,7 +349,14 @@ function CinematicRows({ items, onSelect }: { items: Project[]; onSelect: (p: Pr
           >
             {/* Image — 45% width */}
             <div className="relative flex-shrink-0" style={{ width: "45%" }}>
-              <Image src={p.image} alt={p.title} fill className="object-cover" />
+              {p.image ? (
+                  <Image src={p.image} alt={p.title} fill className="object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(10,10,14,1) 70%)" }}>
+                    <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.15)", letterSpacing: "3px", textTransform: "uppercase" }}>{p.title}</span>
+                  </div>
+                )}
               {/* Gradient fade into content */}
               <div
                 className="absolute inset-y-0"
@@ -413,7 +434,14 @@ function MasonryGrid({ items, onSelect }: { items: Project[]; onSelect: (p: Proj
                 onMouseLeave={e => CardHoverHandlers(e.currentTarget as HTMLElement, false)}
               >
                 <div className="relative w-full" style={{ aspectRatio: aspect }}>
+                  {p.image ? (
                   <Image src={p.image} alt={p.title} fill className="object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(10,10,14,1) 70%)" }}>
+                    <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.15)", letterSpacing: "3px", textTransform: "uppercase" }}>{p.title}</span>
+                  </div>
+                )}
                 </div>
                 <CardBody p={p} compact />
               </motion.div>
@@ -470,7 +498,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         </button>
 
         <div className="relative w-full rounded-xl overflow-hidden mb-6" style={{ aspectRatio: "16/9" }}>
+          {project.image ? (
           <Image src={project.image} alt={project.title} fill className="object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(10,10,14,1) 70%)" }}>
+            <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.15)", letterSpacing: "3px", textTransform: "uppercase" }}>{project.title}</span>
+          </div>
+        )}
         </div>
 
         <div className="mb-1" style={{ fontSize: "10px", color: "#3d3d3f", letterSpacing: "1px", textTransform: "uppercase" }}>

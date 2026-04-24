@@ -1,107 +1,90 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Award, Trophy, Star } from "lucide-react"
+import { BadgeCheck } from "lucide-react"
+import ScrollReveal from "@/components/scroll-reveal"
 
-interface Certification {
-  title: string
-  issuer: string
-  date: string
-  icon: "award" | "trophy" | "star"
-  description?: string
-}
-
-const certifications: Certification[] = [
-  {
-    title: "AWS Academy - Cloud Architecting",
-    issuer: "Amazon Web Services",
-    date: "",
-    icon: "award",
-    description: "Graduate certification in cloud architecture and design",
-  },
-  {
-    title: "AWS Academy - Cloud Foundations",
-    issuer: "Amazon Web Services",
-    date: "",
-    icon: "award",
-    description: "Foundational cloud computing concepts and services",
-  },
-  {
-    title: "Database Programming with PL/SQL",
-    issuer: "Oracle",
-    date: "",
-    icon: "trophy",
-    description: "Advanced database programming and optimization",
-  },
-  {
-    title: "PCAP - Python Programming",
-    issuer: "Cisco",
-    date: "",
-    icon: "star",
-    description: "Programming essentials in Python",
-  },
-  {
-    title: "NDG Linux Essentials",
-    issuer: "Cisco",
-    date: "",
-    icon: "star",
-    description: "Linux system administration fundamentals",
-  },
+// All certs flat — no orphaned single-cert cards
+const certs = [
+  { name: "AWS Cloud Foundations",       provider: "AWS",    color: "#f59e0b", status: "certified"    },
+  { name: "AWS Cloud Architecting",      provider: "AWS",    color: "#f59e0b", status: "certified"    },
+  { name: "AWS Developer Associate",     provider: "AWS",    color: "#f59e0b", status: "in progress"  },
+  { name: "Oracle Database PL/SQL",      provider: "Oracle", color: "#f97316", status: "certified"    },
+  { name: "Cisco Python (PCAP)",         provider: "Cisco",  color: "#22d3ee", status: "certified"    },
+  { name: "Cisco Linux Essentials",      provider: "Cisco",  color: "#22d3ee", status: "certified"    },
 ]
-
-const iconMap = {
-  award: Award,
-  trophy: Trophy,
-  star: Star,
-}
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-bold inline-block">
-            <span className="gradient-text">Certifications & Achievements</span>
-            <div className="h-1 w-40 bg-purple-600 mx-auto mt-2"></div>
-          </h2>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Professional certifications and recognition for excellence
+    <section
+      id="certifications"
+      className="py-20"
+      style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+    >
+      <div className="container mx-auto px-6 lg:px-16">
+        <ScrollReveal className="mb-10">
+          <p className="font-semibold mb-4 tracking-widest uppercase"
+            style={{ fontSize: "11px", color: "#a78bfa" }}>
+            Certifications
           </p>
-        </motion.div>
+          <h2 className="font-bold"
+            style={{
+              fontSize: "clamp(28px, 3vw, 40px)",
+              fontFamily: "'Playfair Display', Georgia, serif",
+              letterSpacing: "-1px",
+              color: "#f5f5f7",
+              lineHeight: 1.1,
+            }}>
+            Staying sharp.
+          </h2>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {certifications.map((cert, index) => {
-            const Icon = iconMap[cert.icon]
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-zinc-900 rounded-lg p-6 border border-zinc-800 hover:border-purple-500/50 transition-all duration-300 group"
+        {/* Flat wrap grid — no orphaned cards */}
+        <ScrollReveal delay={0.1}>
+          <div className="flex flex-wrap gap-3">
+            {certs.map(cert => (
+              <div
+                key={cert.name}
+                className="flex items-center gap-2.5 px-4 py-3 rounded-xl"
+                style={{
+                  background: cert.status === "in progress"
+                    ? "rgba(124,58,237,0.07)"
+                    : "rgba(255,255,255,0.03)",
+                  border: cert.status === "in progress"
+                    ? "1px solid rgba(124,58,237,0.22)"
+                    : "1px solid rgba(255,255,255,0.07)",
+                }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-1">{cert.title}</h3>
-                    <p className="text-purple-400 text-sm mb-2">{cert.issuer}</p>
-                    <p className="text-gray-500 text-sm mb-3">{cert.date}</p>
-                    {cert.description && <p className="text-gray-400 text-sm leading-relaxed">{cert.description}</p>}
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
+                {/* Provider dot */}
+                <div style={{
+                  width: "6px", height: "6px", borderRadius: "50%",
+                  background: cert.color, flexShrink: 0,
+                  boxShadow: `0 0 6px ${cert.color}80`,
+                }} />
+
+                {/* Cert name */}
+                <span style={{
+                  fontSize: "13px",
+                  color: cert.status === "in progress" ? "#86868b" : "#94a3b8",
+                }}>
+                  {cert.name}
+                </span>
+
+                {/* Status */}
+                {cert.status === "certified" ? (
+                  <BadgeCheck className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#34d399" }} />
+                ) : (
+                  <span className="px-2 py-0.5 rounded-full" style={{
+                    fontSize: "9px", color: "#a78bfa",
+                    background: "rgba(124,58,237,0.15)",
+                    fontWeight: 600, letterSpacing: "0.5px",
+                  }}>
+                    IN PROGRESS
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

@@ -132,14 +132,16 @@ export default function Hero() {
                 Saumya.
               </span>
               <br />
-              <span className="text-white">I build software</span>
+              <span className="text-white">I've been asking</span>
               <br />
               <span style={{ backgroundImage: "linear-gradient(135deg,#a78bfa,#ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                that ships.
+                how things work
               </span>
+              <br />
+              <span className="text-white">since 3rd grade.</span>
             </motion.h1>
 
-            {/* Role — static, confident, no carousel */}
+            {/* Personal voice line — replaces generic role label */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -147,7 +149,7 @@ export default function Hero() {
               style={{ marginBottom: "12px" }}
             >
               <span style={{ fontSize: "15px", color: "#6e6e73", fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic", letterSpacing: "0.2px" }}>
-                Full-Stack Software Engineer
+                Now I build them.
               </span>
             </motion.div>
 
