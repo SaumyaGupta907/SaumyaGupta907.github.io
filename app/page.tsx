@@ -1,23 +1,19 @@
-// app/page.tsx
 import Hero from "@/components/hero"
-import Story from "@/components/story"
-import Moments from "@/components/moments"
+import Ledger from "@/components/ledger"
+import Experience from "@/components/experience"
+import Projects from "@/components/projects"
+import Archive from "@/components/archive"
+import Contact from "@/components/contact"
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* Transition bridge */}
-      <div
-        aria-hidden="true"
-        style={{
-          height: "120px",
-          background: "linear-gradient(to bottom, #000 0%, #000 60%, rgba(124,58,237,0.04) 100%)",
-          marginTop: "-1px",
-        }}
-      />
-      <Story />
-      <Moments />
+      <Ledger />
+      <Experience />
+      <Projects />
+      <Archive />
+      <Contact />
     </>
   )
 }

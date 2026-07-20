@@ -1,8 +1,0 @@
-/* Add this to the TOP of your globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
-
-/* Add this to your global styles */
-body {
-  background: #000;
-  color: #f5f5f7;
-}

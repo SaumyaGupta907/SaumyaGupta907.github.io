@@ -1,179 +1,180 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Menu, X, Github, Linkedin } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { COLORS } from "@/lib/theme"
 
-// 5 links max — Apple rule. Education/Certifications moved inside sections, not nav.
 const NAV_LINKS = [
-  { name: "Home",       href: "#home"       },
-  { name: "Story",      href: "#story"      },
-  { name: "Projects",   href: "#work"       },
-  { name: "Experience", href: "#experience" },
-  { name: "Contact",    href: "#contact"    },
+  { name: "Field Log", href: "#field-log" },
+  { name: "Builds", href: "#builds" },
+  { name: "Reference Check", href: "#reference-check" },
+  { name: "Contact", href: "#contact" },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [active, setActive] = useState("")
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 16)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
+    if (!mobileOpen) {
+      document.body.style.overflow = ""
+      return
+    }
+    // cancel any in-flight smooth-scroll before locking, so the fixed
+    // panel's layout isn't computed mid-animation
+    const root = document.documentElement
+    const prevBehavior = root.style.scrollBehavior
+    root.style.scrollBehavior = "auto"
+    window.scrollTo(0, window.scrollY)
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = ""
+      root.style.scrollBehavior = prevBehavior
+    }
   }, [mobileOpen])
 
+  useEffect(() => {
+    const ids = NAV_LINKS.map((l) => l.href.slice(1))
+    const els = ids.map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e)
+    if (!els.length) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (visible) setActive(visible.target.id)
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    )
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <>
-      <header
-        className="fixed top-0 w-full z-50 transition-all duration-500"
-        style={{
-          // Always dark. On scroll: subtle frosted border appears, bg deepens slightly.
-          background: scrolled
-            ? "rgba(0,0,0,0.75)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-          borderBottom: scrolled
-            ? "1px solid rgba(255,255,255,0.06)"
-            : "1px solid transparent",
-        }}
-      >
-        <div className="container mx-auto px-6 lg:px-16">
-          <div
-            className="flex items-center justify-between transition-all duration-500"
-            style={{ height: scrolled ? "52px" : "68px" }}
-          >
-            {/* Logo */}
-            <Link
-              href="#home"
-              className="font-bold tracking-tight transition-all duration-300 hover:opacity-70"
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: scrolled ? "16px" : "18px",
-                background: "linear-gradient(135deg,#7c3aed,#a78bfa,#ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Saumya Gupta
-            </Link>
-
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium transition-colors duration-200"
-                  style={{ color: "#86868b", letterSpacing: "0.01em" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#f5f5f7")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#86868b")}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Desktop icons */}
-            <div className="hidden md:flex items-center gap-5">
-              <a
-                href="https://github.com/SaumyaGupta907"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-all duration-200 hover:-translate-y-0.5"
-                style={{ color: "#6e6e73" }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "#f5f5f7")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#6e6e73")}
-              >
-                <Github className="w-[18px] h-[18px]" />
-              </a>
-              <a
-                href="https://linkedin.com/in/saumya-gupta346"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-all duration-200 hover:-translate-y-0.5"
-                style={{ color: "#6e6e73" }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "#f5f5f7")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#6e6e73")}
-              >
-                <Linkedin className="w-[18px] h-[18px]" />
-              </a>
-            </div>
-
-            {/* Mobile burger */}
-            <button
-              className="md:hidden flex items-center justify-center w-8 h-8 transition-colors"
-              style={{ color: "#86868b" }}
-              onClick={() => setMobileOpen(o => !o)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile overlay menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed inset-0 z-40 flex flex-col pt-20 px-6"
+    <header
+      className="fixed top-0 w-full z-50 transition-colors duration-300"
+      style={{
+        background: scrolled ? "rgba(250,246,239,0.92)" : "transparent",
+        borderBottom: `1px solid ${scrolled ? COLORS.line : "transparent"}`,
+        backdropFilter: scrolled ? "blur(8px)" : "none",
+      }}
+    >
+      <div className="mx-auto max-w-6xl px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="#top" className="flex items-center gap-2.5">
+          <span
+            className="flex items-center justify-center rounded-full text-[10px] font-mono font-medium"
             style={{
-              background: "rgba(0,0,0,0.96)",
-              backdropFilter: "blur(24px)",
+              width: "26px",
+              height: "26px",
+              border: `1.5px solid ${COLORS.ink}`,
+              color: COLORS.ink,
             }}
           >
-            <nav className="flex flex-col gap-6 mt-8">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.3 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
-                      fontSize: "28px",
-                      fontWeight: 700,
-                      color: "#f5f5f7",
-                      letterSpacing: "-0.5px",
-                    }}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+            SG
+          </span>
+          <span
+            className="hidden sm:inline text-sm font-medium tracking-tight"
+            style={{ color: COLORS.ink, fontFamily: "var(--font-serif)" }}
+          >
+            Saumya Gupta
+          </span>
+        </a>
 
-            {/* Mobile social */}
-            <div className="flex gap-6 mt-auto mb-12">
-              <a href="https://github.com/SaumyaGupta907" target="_blank" rel="noreferrer" style={{ color: "#6e6e73" }}>
-                <Github className="w-5 h-5" />
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => {
+            const isActive = active === link.href.slice(1)
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-xs font-mono tracking-wide uppercase transition-colors duration-200"
+                style={{ color: isActive ? COLORS.signal : COLORS.inkSoft }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = COLORS.ink)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? COLORS.signal : COLORS.inkSoft)}
+              >
+                {link.name}
               </a>
-              <a href="https://linkedin.com/in/saumya-gupta346" target="_blank" rel="noreferrer" style={{ color: "#6e6e73" }}>
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            )
+          })}
+        </nav>
+
+        <div
+          className="hidden md:flex items-center gap-2 text-[11px] font-mono uppercase tracking-wide px-3 py-1.5 rounded-full"
+          style={{ color: COLORS.signal, border: `1px solid ${COLORS.signal}` }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: COLORS.signal }} />
+          Open to work
+        </div>
+
+        <button
+          className="md:hidden flex flex-col gap-1.5 w-6"
+          aria-label="Toggle menu"
+          onClick={() => setMobileOpen((o) => !o)}
+        >
+          <span
+            className="h-px w-full transition-transform duration-200"
+            style={{
+              background: COLORS.ink,
+              transform: mobileOpen ? "translateY(6.5px) rotate(45deg)" : "none",
+            }}
+          />
+          <span
+            className="h-px w-full transition-opacity duration-200"
+            style={{ background: COLORS.ink, opacity: mobileOpen ? 0 : 1 }}
+          />
+          <span
+            className="h-px w-full transition-transform duration-200"
+            style={{
+              background: COLORS.ink,
+              transform: mobileOpen ? "translateY(-6.5px) rotate(-45deg)" : "none",
+            }}
+          />
+        </button>
+      </div>
+
+      {mobileOpen && (
+        <nav
+          className="md:hidden flex flex-col gap-6 px-6 py-10"
+          style={{
+            position: "fixed",
+            top: "64px",
+            left: 0,
+            right: 0,
+            height: "calc(100vh - 64px)",
+            background: COLORS.paper,
+            borderTop: `1px solid ${COLORS.line}`,
+            zIndex: 999,
+            transform: "translateZ(0)",
+            WebkitBackfaceVisibility: "hidden",
+            isolation: "isolate",
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-2xl"
+              style={{ color: COLORS.ink, fontFamily: "var(--font-serif)" }}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.name}
+            </a>
+          ))}
+          <div
+            className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-wide mt-4 px-3 py-1.5 rounded-full w-fit"
+            style={{ color: COLORS.signal, border: `1px solid ${COLORS.signal}` }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: COLORS.signal }} />
+            Open to work
+          </div>
+        </nav>
+      )}
+    </header>
   )
 }
