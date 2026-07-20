@@ -1,87 +1,85 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
-import Navbar from "./navbar"
+import { COLORS } from "@/lib/theme"
+import MagneticButton from "@/components/magnetic-button"
+import Reveal from "@/components/reveal"
 
 export default function Hero() {
-  const [typedText, setTypedText] = useState("")
-  const fullText = "Software Development Engineer"
-
-  useEffect(() => {
-    let i = 0
-    const typingInterval = setInterval(() => {
-      if (i < fullText.length) {
-        setTypedText(fullText.substring(0, i + 1))
-        i++
-      } else {
-        clearInterval(typingInterval)
-      }
-    }, 100)
-
-    return () => clearInterval(typingInterval)
-  }, [])
-
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center hero-gradient">
-      <Navbar />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-              Hi, I&apos;m <span className="gradient-text">Saumya Gupta</span>
-            </h1>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.5 }}>
-            <h2 className="mt-6 text-xl sm:text-2xl md:text-3xl font-medium text-gray-600 h-8">
-              {typedText}
-              <span className="animate-pulse">|</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="mt-8 flex justify-center gap-4"
+    <section id="top" className="pt-28 pb-10 px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        <Reveal>
+          <p
+            className="text-xs font-mono uppercase tracking-[0.2em] mb-6"
+            style={{ color: COLORS.signal }}
           >
-            <a href="https://github.com/SaumyaGupta907" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="rounded-full">
-                <Github className="mr-2 h-5 w-5" />
-                GitHub
-              </Button>
-            </a>
-            <a href="https://www.linkedin.com/in/saumya-gupta346/" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="rounded-full">
-                <Linkedin className="mr-2 h-5 w-5" />
-                LinkedIn
-              </Button>
-            </a>
-            <Button
-              variant="default"
-              size="lg"
-              className="rounded-full gradient-bg"
-              onClick={() => {
-                document.getElementById("contact")?.scrollIntoView({
-                  behavior: "smooth",
-                })
-              }}
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Me
-            </Button>
-          </motion.div>
-        </div>
-      </div>
+            Field Log — Entry 001 · Software Engineer
+          </p>
+        </Reveal>
 
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" aria-label="Scroll down">
-          <ArrowDown className="h-6 w-6 text-gray-500" />
-        </a>
+        <Reveal delay={80}>
+          <h1
+            className="font-serif tracking-tight"
+            style={{
+              fontSize: "clamp(38px, 6.4vw, 74px)",
+              lineHeight: 1.08,
+              color: COLORS.ink,
+              marginBottom: "28px",
+              maxWidth: "18ch",
+            }}
+          >
+            I&apos;ve been curious how things work since third grade.
+            <br />
+            Now{" "}
+            <span className="relative inline-block" style={{ color: COLORS.signal }}>
+              I build them
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 14"
+                className="absolute left-0 w-full"
+                style={{ bottom: "-6px", height: "12px" }}
+              >
+                <path
+                  d="M2 8 C 60 2, 120 12, 160 6 S 260 2, 298 8"
+                  fill="none"
+                  stroke={COLORS.signal}
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            .
+          </h1>
+        </Reveal>
+
+        <Reveal delay={160}>
+          <p
+            className="text-base sm:text-lg leading-relaxed"
+            style={{ color: COLORS.inkSoft, maxWidth: "56ch", marginBottom: "40px" }}
+          >
+            Software engineer across backend, frontend, and GenAI. Java, Python, TypeScript, React,
+            AWS.
+          </p>
+        </Reveal>
+
+        <Reveal delay={240}>
+          <div className="flex flex-wrap items-center gap-4">
+            <MagneticButton
+              href="#builds"
+              className="text-sm font-medium rounded-full"
+              style={{ padding: "13px 28px", background: COLORS.signal, color: COLORS.paper }}
+            >
+              See the builds →
+            </MagneticButton>
+            <MagneticButton
+              href="#reference-check"
+              className="text-sm font-medium rounded-full"
+              style={{ padding: "13px 28px", border: `1px solid ${COLORS.ink}`, color: COLORS.ink }}
+            >
+              Ask directly →
+            </MagneticButton>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

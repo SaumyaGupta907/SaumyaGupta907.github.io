@@ -1,136 +1,121 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { Calendar, MapPin } from "lucide-react"
+import { COLORS } from "@/lib/theme"
+import Reveal from "@/components/reveal"
+
+const LOG = [
+  {
+    id: "b3c12e",
+    range: "2025.08 → 2026.03",
+    company: "IpserLab",
+    role: "Software Engineering Intern",
+    location: "New York, NY",
+    note: "IpserLab was building a multi-vendor e-commerce platform from scratch with a small team. I owned the frontend end to end — built 10+ reusable React and TypeScript components across the landing pages, supplier dashboard, and user flows, and integrated REST APIs for session-aware authentication and dynamic profile rendering.",
+  },
+  {
+    id: "a1f92c",
+    range: "2025.05 → 2025.08",
+    company: "Experian Consumer Services",
+    role: "Software Engineering Intern",
+    location: "Boston, MA",
+    note: "Experian's fraud detection platform had a patchwork of undocumented APIs and aging microservices running on JDK 8. I took ownership of the API layer end to end — designed and deployed 6 client-facing specifications in MuleSoft for fraud detection and identity services, then migrated 4 Spring Boot microservices to JDK 17. The migration surfaced 15 Veracode security vulnerabilities which I resolved before shipping to production through GitHub Actions and Harness CI/CD.",
+  },
+  {
+    id: "7e3d0b",
+    range: "2024.05 → 2024.08",
+    company: "Crewasis.ai (Techstars)",
+    role: "Software Engineering Intern",
+    location: "New York, NY",
+    note: "Crewasis was processing client data manually — analysts were waiting 3 days for reports and spending 5 minutes on every search query. I built the entire data infrastructure from scratch: an ETL pipeline on AWS S3 that automated report generation, a Django REST API search portal, and a React and TypeScript dashboard for client-facing insights. Processing time dropped from 3 days to 10 minutes. Search went from 5 minutes to seconds.",
+  },
+  {
+    id: "5c81f4",
+    range: "2022.10 → 2023.08",
+    company: "Accenture",
+    role: "Associate Software Engineer",
+    location: "Hyderabad, India",
+    note: "7-Eleven was migrating 25 enterprise servers to Azure across HANA, Oracle, and Sybase databases. My job was to make sure nothing went down during the move. I built Java automation to continuously monitor server health and wrote Kafka to Elasticsearch event pipelines that streamed real-time metrics for anomaly detection. We maintained 99.9% uptime throughout the migration and automated disaster recovery so incidents resolved before they escalated.",
+  },
+  {
+    id: "2b09a7",
+    range: "2024 → 2025",
+    company: "Northeastern University",
+    role: "Teaching Assistant · Object-Oriented Design",
+    location: "Boston, MA",
+    note: "I mentored over 300 students in Java, object-oriented design, SOLID principles, and design patterns — reviewing code, running office hours, and helping them debug systems they couldn't see past on their own.",
+  },
+]
 
 export default function Experience() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const experiences = [
-    {
-      title: "Software Engineering Intern",
-      company: "Experian",
-      location: "Boston, MA",
-      period: "May 2025 – Aug 2025",
-      skills: [
-        "Java",
-        "Spring Boot",
-        "MuleSoft Anypoint Studio",
-        "Insomnia",
-        "RESTful API Development",
-        "Maven",
-        "Gradle",
-        "AWS DynamoDB",
-        "GitHub Actions",
-        "Harness.io",
-        "Veracode",
-      ],
-    },
-    {
-      title: "Software Engineering Intern",
-      company: "Crewasis.ai",
-      location: "New York, NY",
-      period: "May 2024 – Aug 2024",
-      skills: ["TypeScript", "Next.js", "React", "Django", "PostgreSQL", "RESTful API", "AWS", "Database Optimization"],
-    },
-    {
-      title: "Object-Oriented Design & Java Teaching Assistant",
-      company: "Northeastern University",
-      location: "Boston, MA",
-      period: "May 2024 – May 2025",
-      skills: ["Java", "Object-Oriented Design", "Design Patterns", "JUnit", "PITest", "Mentoring"],
-    },
-    {
-      title: "Associate Software Engineer",
-      company: "Accenture",
-      location: "Hyderabad, India",
-      period: "Oct 2022 – Aug 2023",
-      skills: [
-        "SAP BASIS",
-        "SAP HANA",
-        "Sybase",
-        "Oracle",
-        "Linux",
-        "System Administration",
-        "Database Management",
-        "SSL",
-        "Security",
-      ],
-    },
-    {
-      title: "Software Developer Intern",
-      company: "DecibelApps",
-      location: "Herndon, VA (Remote)",
-      period: "Aug 2020 – Mar 2021",
-      skills: ["JavaScript", "Python", "Alexa Skills Kit", "React", "REST APIs", "Amazon S3", "Conversational AI"],
-    },
-  ]
-
-  const ExperienceCard = ({
-    experience,
-    index,
-  }: {
-    experience: { title: string; company: string; location: string; period: string; skills: string[] }
-    index: number
-  }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="relative pl-8 pb-8 last:pb-0 experience-timeline"
-    >
-      <div className="absolute left-[-8px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-black"></div>
-      <div className="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700">
-        <div className="flex flex-wrap justify-between items-start mb-2">
-          <h3 className="text-xl font-bold text-white">{experience.title}</h3>
-          <div className="flex items-center text-sm text-gray-400 mt-1 sm:mt-0">
-            <Calendar className="h-4 w-4 mr-1" />
-            <span>{experience.period}</span>
-          </div>
-        </div>
-        <div className="mb-4">
-          <div className="text-primary font-medium">{experience.company}</div>
-          <div className="flex items-center text-sm text-gray-400">
-            <MapPin className="h-4 w-4 mr-1" />
-            <span>{experience.location}</span>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {experience.skills.map((skill, i) => (
-            <span key={i} className="px-3 py-1 skill-pill rounded-full text-sm font-medium">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  )
-
   return (
-    <section id="experience" className="py-20 bg-black">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-bold gradient-text text-white">Work Experience</h2>
-          <div className="mt-2 h-1 w-20 gradient-bg mx-auto"></div>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            My professional journey has equipped me with valuable experience across different roles and technologies.
+    <section id="field-log" className="px-6 lg:px-8 py-12">
+      <div className="mx-auto max-w-4xl">
+        <Reveal>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-3" style={{ color: COLORS.signal }}>
+            git log --author=saumya
           </p>
-        </motion.div>
+          <h2
+            className="font-serif mb-10"
+            style={{ fontSize: "clamp(28px, 3.4vw, 40px)", color: COLORS.ink }}
+          >
+            Where I&apos;ve built.
+          </h2>
+        </Reveal>
 
-        <div className="max-w-3xl mx-auto">
-          {experiences.map((experience, index) => (
-            <ExperienceCard key={index} experience={experience} index={index} />
-          ))}
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="absolute top-2 bottom-2 hidden sm:block"
+            style={{ left: "5px", width: "1.5px", background: COLORS.line }}
+          />
+
+          <div className="flex flex-col gap-12">
+            {LOG.map((entry, i) => (
+              <Reveal key={entry.id} delay={i * 80}>
+                <div className="relative sm:pl-12">
+                  <span
+                    aria-hidden="true"
+                    className="hidden sm:block absolute rounded-full"
+                    style={{
+                      left: "0px",
+                      top: "6px",
+                      width: "11px",
+                      height: "11px",
+                      background: COLORS.paper,
+                      border: `2px solid ${COLORS.signal}`,
+                    }}
+                  />
+
+                  <p
+                    className="text-[11px] font-mono mb-2"
+                    style={{ color: COLORS.inkFaint }}
+                  >
+                    #{entry.id} · {entry.range}
+                  </p>
+
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-2">
+                    <h3
+                      className="font-serif"
+                      style={{ fontSize: "22px", color: COLORS.ink }}
+                    >
+                      {entry.company}
+                    </h3>
+                    <span className="text-xs font-mono" style={{ color: COLORS.inkFaint }}>
+                      {entry.location}
+                    </span>
+                  </div>
+
+                  <p className="text-sm font-medium mb-3" style={{ color: COLORS.signal }}>
+                    {entry.role}
+                  </p>
+
+                  <p className="text-sm leading-relaxed" style={{ color: COLORS.inkSoft, maxWidth: "62ch" }}>
+                    {entry.note}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

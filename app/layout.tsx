@@ -1,31 +1,48 @@
 import type React from "react"
-import { Inter } from "next/font/google"
+import type { Metadata } from "next"
+import { Fraunces, JetBrains_Mono, Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import Navbar from "@/components/navbar"
+import AskWidget from "@/components/ask-widget"
 
-const inter = Inter({ subsets: ["latin"] })
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+})
 
-export const metadata = {
-  title: "Saumya Gupta | Software Development Engineer",
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500"],
+  display: "swap",
+})
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600"],
+  display: "swap",
+})
+
+export const metadata: Metadata = {
+  title: "Saumya Gupta — Software Engineer",
   description:
-    "Portfolio website of Saumya Gupta, a Software Development Engineer with expertise in full-stack development.",
-  generator: 'v0.dev',
-  other: {
-    'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src *; script-src 'self' 'unsafe-inline';"
-  }
+    "Field log of Saumya Gupta, software engineer. MS CS Northeastern. Previously at Experian, Crewasis (Techstars), Accenture. Winner, Smart India Hackathon.",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={`${fraunces.variable} ${mono.variable} ${inter.variable}`}>
+      <body>
+        <div className="grain" aria-hidden="true" />
+        <Navbar />
+        <main>{children}</main>
+        <AskWidget />
       </body>
     </html>
   )

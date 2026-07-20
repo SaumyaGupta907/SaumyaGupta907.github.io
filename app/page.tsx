@@ -1,29 +1,19 @@
-import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
-import About from "@/components/about"
-import Skills from "@/components/skills"
-import Projects from "@/components/projects"
+import Ledger from "@/components/ledger"
 import Experience from "@/components/experience"
-import Education from "@/components/education"
-import Certifications from "@/components/certifications"
+import Projects from "@/components/projects"
+import Archive from "@/components/archive"
 import Contact from "@/components/contact"
-import Footer from "@/components/footer"
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
+      <Hero />
+      <Ledger />
+      <Experience />
+      <Projects />
+      <Archive />
+      <Contact />
     </>
   )
 }
